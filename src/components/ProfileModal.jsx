@@ -1,85 +1,79 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
-import { Link} from 'react-router-dom';
-
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { Link, useNavigate } from 'react-router-dom';
+import swal from 'sweetalert';
 
 
 
 function LoginModal({ handleLoginModal }) {
+  const navigation = useNavigate();
   const name = localStorage.getItem('userName')
   const email = localStorage.getItem('userEmail')
   const phone = localStorage.getItem('userPhone')
 
-  const hideLoginModal = () => {
-    handleLoginModal()
+
+
+  const logout = () => {
+
+    swal({
+      title: "Are you sure?",
+      text: "Once you logged out you need to log in again",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    })
+      .then((willDelete) => {
+        if (willDelete) {
+          localStorage.removeItem('userName')
+          localStorage.removeItem('userEmail')
+          localStorage.removeItem('userPhone')
+          localStorage.removeItem('loggedIn')
+          navigation('/')
+          swal("Logout Successful", {
+            icon: "success",
+          });
+        } else {
+          console.log("cancelled")
+        }
+      });
   }
 
-  const logout = ()=>{
-    if(window.confirm("Do you really want to logout??")){
-    localStorage.removeItem('userName')
-    localStorage.removeItem('userEmail')
-    localStorage.removeItem('userPhone')
-    localStorage.removeItem('loggedIn')
-    alert('sign out successfully')
-    }else{
-      console.log("cancelled")
-    }
-
-  }
- 
 
 
   return (
     <>
-      
-          <Modal show={handleLoginModal}>
-            <Modal.Header>
-              <Modal.Title style={{ color: 'black' }}>Profile</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-              <Form>
+
+      <Modal show={handleLoginModal}>
+        <Modal.Header>
+          <Modal.Title style={{ color: 'black' }}>Profile</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form>
             <div>
               <div>
-                <p style={{color:'black'}}>Full Name: {name}</p>
+                <p style={{ color: 'black' }}>Full Name: {name}</p>
               </div>
               <div>
-                <p style={{color:'black'}}>Email: {email}</p>
+                <p style={{ color: 'black' }}>Email: {email}</p>
               </div >
               <div>
-                <p style={{color:'black'}}> Phone : {phone}</p>
+                <p style={{ color: 'black' }}> Phone : {phone}</p>
               </div>
-              </div>
-               
-              </Form>
-            </Modal.Body>
-            <Modal.Footer>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                  <Link style={{ color: 'blue', justifyItems: 'center' }} onClick={logout} >Logout</Link>
-                </Form.Group>
-              <Button variant="secondary" onClick={handleLoginModal}>
-                Close
-              </Button>
-              
-            </Modal.Footer>
-            <ToastContainer
-              position="top-center"
-              autoClose={5000}
-              hideProgressBar={false}
-              newestOnTop={false}
-              closeOnClick
-              rtl={false}
-              pauseOnFocusLoss
-              draggable
-              pauseOnHover
-              theme="dark"
-            />
+            </div>
 
-          </Modal>
-      
+          </Form>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="primary" onClick={logout}> Logout</Button>
+          <Button variant="secondary" onClick={handleLoginModal}>
+            Close
+          </Button>
+
+        </Modal.Footer>
+      </Modal>
+
 
     </>
   );

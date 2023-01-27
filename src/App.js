@@ -1,10 +1,10 @@
-import { Suspense, lazy } from 'react';
-import Layout from './layout/Layout';
+import { lazy } from 'react';
 import 'bootstrap/dist/js/bootstrap.js';
 import "./assets/vendors/animate/animate.css"
 import "./assets/css/foodhut.css"
 import "./assets/vendors/themify-icons/css/themify-icons.css"
 import { Route, Routes } from 'react-router-dom';
+import Layout from './layout/Layout';
 
 // import Login from './components/Login';
 // import Home from './components/Home';
@@ -19,22 +19,21 @@ import { Route, Routes } from 'react-router-dom';
 // import Food from './components/Food';
 // import Juice from './components/Juice';
 // import PrivateLayout from './layout/PrivateLayout';
-const Login = lazy(()=>import('./components/Login'));
-const Home = lazy(()=>import('./components/Home'));
-const About = lazy(()=>import('./components/About'));
-const Gallery = lazy(()=>import('./components/Gallery'));
-const AvailableFoods = lazy(()=>import('./components/AvailableFoods'));
-const FoodDetails = lazy(()=>import('./components/FoodDetails'));
-const Blogs = lazy(()=>import('./components/Blogs'));
-const Reviews = lazy(()=>import('./components/Reviews'));
-const ContactUs = lazy(()=>import('./components/Reviews'));
-const RegistrationModal = lazy(()=>import('./components/RegistrationModal'));
-const Food = lazy(()=>import('./components/Food'));
-const Juice = lazy(()=>import('./components/Juice'));
-const PrivateLayout = lazy(()=>import('./layout/PrivateLayout'));
+const Login = lazy(() => import('./components/Login'));
+const Home = lazy(() => import('./components/Home'));
+const About = lazy(() => import('./components/About'));
+const Gallery = lazy(() => import('./components/Gallery'));
+const AvailableFoods = lazy(() => import('./components/AvailableFoods'));
+const FoodDetails = lazy(() => import('./components/FoodDetails'));
+const Blogs = lazy(() => import('./components/Blogs'));
+const Reviews = lazy(() => import('./components/Reviews'));
+const ContactUs = lazy(() => import('./components/Reviews'));
+const RegistrationModal = lazy(() => import('./components/RegistrationModal'));
+const Food = lazy(() => import('./components/Food'));
+const Juice = lazy(() => import('./components/Juice'));
+const PrivateLayout = lazy(() => import('./layout/PrivateLayout'));
 
 function App() {
-  const isloggedin = false
   return (
     <Routes>
       <Route path='/' element={<Layout />}>

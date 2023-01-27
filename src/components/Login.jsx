@@ -1,17 +1,26 @@
-import Axios from 'axios'
-import React, { useState } from 'react'
-import { Navigate, useNavigate } from 'react-router-dom'
+import React, { useEffect, useLayoutEffect, useState } from 'react'
+import { Navigate, useLocation, useNavigate } from 'react-router-dom'
 import { toast, ToastContainer } from 'react-toastify'
 import img from '../assets/imgs/about-section.jpg'
 import loginValidation from '../validations/loginValidation'
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { login } from '../store/authSlice'
 import RegistrationModal from './RegistrationModal';
+import swal from 'sweetalert'
 
 // import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 const Login = () => {
+  const navigation = useNavigate()
+  useEffect(() => {
+    const isLogged = localStorage.getItem("loggedIn")
+    if (isLogged == 'true') {
+      navigation("/home")
+    }
+  }, [])
+
+
 
   const initialFormValues = {
     email: '',
@@ -74,34 +83,31 @@ const Login = () => {
         .unwrap()
         .then(response => {
           if (response.status === 'ok') {
-            alert(response.message)
-            navigate('home', { replace: true });
+            swal({
+              title: "Success",
+              text: response.message,
+              icon: "success",
+            });
+            // swal(title response.message)
+            setTimeout(() => {
+              navigate('home', { replace: true });
+            }, 2000);
+
             localStorage.setItem('userName', response.data.name)
             localStorage.setItem('userEmail', response.data.email)
             localStorage.setItem('userPhone', response.data.phone)
           } else if (response.status === 'error') {
-            toast(response.message)
+            swal({
+              title: "Failed",
+              text: response.message,
+              icon: "error",
+            });
           }
         })
-      // const resp = await Axios.post('http://localhost:3001/login', formValuesData)
-      // token:window.localStorage.getItem('token')
-      // console.log(resp)
-      // if (resp) {
-      //   toast(resp.data?.message)
-      //   // navigate.replace('home')
-      //   navigate.goBack()
-
-      //   // const token = localStorage.setItem(resp.data?.token)
-      // } else {
-      //   toast(resp.data?.message)
-      // }
     }
   }
 
-  // const loginCallback = () => {
-  //   navigate('login')
 
-  // }
   return (
     <div className="d-lg-flex half" >
       <div className="bg order-1 order-md-2" style={{ background: 'url(' + img + ')', backgroundSize: 'auto' }}></div>
@@ -134,7 +140,7 @@ const Login = () => {
                   <span className="ml-auto"><a href="#" className="forgot-pass" onClick={handleRegisterModal}> Don't have an account?</a></span>
                 </div>
                 {
-                  showRegisterModal && <RegistrationModal handleRegisterModal={handleRegisterModal}/>
+                  showRegisterModal && <RegistrationModal handleRegisterModal={handleRegisterModal} />
                 }
 
                 <button type='submit' className="btn btn-block btn-primary" onClick={handleSubmit}>Submit</button>
