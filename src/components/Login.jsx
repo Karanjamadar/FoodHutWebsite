@@ -116,18 +116,18 @@ const Login = () => {
         <div className="container">
           <div className="row align-items-center justify-content-center">
             <div className="col-md-7">
-              <h3>Login to <strong>Colorlib</strong></h3>
-              <p className="mb-4">Lorem ipsum dolor sit amet elit. Sapiente sit aut eos consectetur adipisicing.</p>
+              <h3 className='text-primary'>Login to <strong className='text-primary'>FoodHut</strong></h3>
+              <p className="mb-4 text-dark">FoodHut is the food based website which has millions of customer base why don't you join us!!!</p>
               <div>
                 <div className="form-group first">
-                  <label htmlFor="exampleInputEmail1" style={{ color: 'black' }}>Email :</label>
-                  <input type="tel" className="form-control" id="exampleInputEmail3" aria-describedby="emailHelp" placeholder="Enter your email address" onChange={handleEmail} value={formValues.email} />
+                  <label htmlFor="exampleInputEmail1" className='text-dark'>Email :</label>
+                  <input type="tel" className="form-control text-dark" id="exampleInputEmail3" aria-describedby="emailHelp" placeholder="Enter your email address" onChange={handleEmail} value={formValues.email} />
                   {formErrors.email &&
                     <small style={{ color: 'red' }}>{formErrors.email}</small>
                   }
                 </div>
                 <div className="form-group last mb-3">
-                  <label htmlFor="exampleInputPassword1" style={{ color: 'black' }}>Password :</label>
+                  <label htmlFor="exampleInputPassword1" className='text-dark'>Password :</label>
                   <input type="password" className="form-control" id="exampleInputPassword1" placeholder=" Enter your Password" onChange={handlePassword} value={formValues.password} />
                   {formErrors.password &&
                     <small style={{ color: 'red' }}>{formErrors.password}</small>

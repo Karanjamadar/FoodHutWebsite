@@ -14,21 +14,21 @@ const AvailableFoods = () => {
   const { foods, isLoading } = useSelector((state) => state.food)
   return (
     <>
-      <div id="gallary" className="text-center bg-dark text-light has-height-md middle-items wow fadeIn mt-1">
+      <div id="gallary" className="text-center bg-danger text-light mt-4">
         <h2 className="section-title">Available Foods</h2>
       </div>
       <div className="gallary row d-flex justify-content-center p-4 row bg-dark" style={{ backgroundImage: "343a40" }}>
         {
-          isLoading ? <div className="spinner-border text-light mx-auto my-auto" style={{ height: "100px", width: "100px" }} role="status">
+          isLoading ? <div className="spinner-border text-success mx-auto my-auto" style={{ height: "100px", width: "100px" }} role="status">
             <span className="sr-only">Loading...</span>
           </div> : foods?.map((item, index) => {
             return (
               <div className="col-sm-6 col-lg-3 mt-4" key={index}>
-                <div className='gallary-item wow fadeIn border border-white rounded h-100 mb-1 mt-0 bg-body b' >
+                <div className='gallary-item wow fadeIn border border-white rounded h-100 mb-1 mt-0 bg-body b bg-secondary' >
                   <img src={item?.image} alt="failed to load" className="gallary-img" height={300} />
-                  <Link to={`/details/${item.id}`} className="gallary-overlay" >
+                  {/* <Link to={`/details/${item.id}`} className="gallary-overlay" >
                     <h4 className="text-white">{item?.name}</h4>
-                  </Link>
+                  </Link> */}
                   <div className="card-body">
                     <h4 className="pt20 pb20">{item?.name}</h4>
                     <p className="text-white">ingredients : [ {

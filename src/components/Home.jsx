@@ -71,7 +71,7 @@ const Home = () => {
       </div>
 
 
-      <div id="testmonial" className="container-fluid wow fadeIn bg-dark text-light has-height-lg middle-items">
+      <div id="testmonial" className="container-fluid wow fadeIn bg-secondary text-light has-height-lg middle-items">
         <h2 className="section-title my-5 text-center">REVIEWS</h2>
         <div className="row mt-3 mb-5">
           <div className="col-md-4 my-3 my-md-0">
@@ -105,9 +105,10 @@ const Home = () => {
       </div>
 
 
-      <div id="contact" className="container-fluid bg-dark text-dark border-top wow fadeIn">
+      <div id="contact" className="container-fluid bg-dark text-light border-top wow fadeIn">
         <div className="row">
           <div className="col-md-6 px-0">
+            <GoogleMap/>
           </div>
           <div className="col-md-6 px-5 has-height-lg middle-items">
             <h3>FIND US</h3>
@@ -115,14 +116,14 @@ const Home = () => {
             <div className="text-muted">
               <p><span className="ti-location-pin pr-3"></span> 12345 Fake ST NoWhere, AB Country</p>
               <p><span className="ti-support pr-3"></span> (123) 456-7890</p>
-              <p><span className="ti-email pr-3"></span>info@website.com</p>
+              <p><span className="ti-email pr-3"></span>www.FoodHut.com</p>
             </div>
           </div>
         </div>
       </div>
 
 
-      <div className="container-fluid bg-dark text-light has-height-md middle-items border-top text-center wow fadeIn">
+      <div className="container-fluid bg-primary text-light has-height-md middle-items border-top text-center wow fadeIn">
         <div className="row">
           <div className="col-sm-4">
             <h3>EMAIL US</h3>

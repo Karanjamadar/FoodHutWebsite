@@ -20,7 +20,7 @@ const Navbar = () => {
   }
 
   return (
-    <nav className=" navbar navbar-expand-lg navbar-dark fixed-top bg-dark  border-bottom ">
+    <nav className=" navbar navbar-expand-lg navbar-dark fixed-top bg-primary  border-bottom ">
       <div className="collapse navbar-collapse" id="navbarSupportedContent">
         <ul className="navbar-nav">
           <li className="nav-item">
@@ -30,7 +30,7 @@ const Navbar = () => {
             <Link className="nav-link" to="/gallery">Gallary</Link>
           </li>
           <li className="nav-item">
-            <Link className="nav-link" to="/available">Available-Foods</Link>
+            <Link className="nav-link" to="/available">Available</Link>
           </li>
           <li className="nav-item">
             <Link className="nav-link" to="/about">About</Link>

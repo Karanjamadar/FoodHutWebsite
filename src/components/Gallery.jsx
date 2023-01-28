@@ -12,10 +12,9 @@ const Gallery = () => {
   useEffect(() => {
     dispatch(fetchGalleryItems())
   }, []);
-  console.log(gallery)
   return (
     <>
-      <div id="gallary" className="text-center bg-dark text-light has-height-md middle-items wow fadeIn mt-5">
+      <div id="gallary" className="text-center bg-info text-primary mt-4">
         <h2 className="section-title">OUR MENU</h2>
       </div>
       <div className="gallary row d-flex justify-content-center" >
@@ -31,7 +30,6 @@ const Gallery = () => {
                   <i className="gallary-icon ti-plus"></i>
                 </Link>
               </div>
-
             )
           })
         }
