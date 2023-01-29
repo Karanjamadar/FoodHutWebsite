@@ -2,23 +2,12 @@ import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
-import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import registerValidation from '../validations/registerValidation';
-// import 'bootstrap/dist/css/bootstrap.min.css';
-
-
-
-
-
+import swal from 'sweetalert';
 
 function RegistrationModal({ handleRegisterModal }) {
 
-  const hideLoginModal = () => {
-    handleRegisterModal()
-  }
   const initialFormValues = {
     userName: '',
     email: '',
@@ -47,17 +36,20 @@ function RegistrationModal({ handleRegisterModal }) {
     const validation = registerValidation(formValues)
     if (Object.keys(validation).length > 0) {
       setformErrors(validation)
-      // toast("check fields")
     } else {
-      const resp = await axios.post('http://localhost:3001/register', formValueData)
+      const resp = await axios.post('http://localhost:3001/register', formValueData);
       if (resp) {
-        console.log(resp?.data)
-        toast(resp.data.message)
+        console.log(resp.data);
+        handleRegisterModal()
+        swal({
+          title: "Success",
+          text: resp.data.message,
+          icon: "success",
+        });
 
       }
     }
   }
-  const navigation = useNavigate()
 
   const handleName = (e) => {
     setformValues({
@@ -110,36 +102,36 @@ function RegistrationModal({ handleRegisterModal }) {
     <>
       <Modal show={handleRegisterModal} onHide={handleRegisterModal}>
         <Modal.Header style={{ backgroundColor: '' }}>
-          <Modal.Title style={{ color: 'black' }}>Registration</Modal.Title>
+          <Modal.Title className='text-primary'>Registration</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form>
 
             <div className="form-group">
-              <label htmlFor="exampleInputEmail1" style={{ color: 'black' }}>Name :</label>
-              <input type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter your full name" onChange={handleName} value={formValues.userName} />
+              <label htmlFor="exampleInputEmail1" className='text-dark'>Name :</label>
+              <input type="text" className="form-control bg-light text-dark" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter your full name" onChange={handleName} value={formValues.userName} />
               {
                 formErrors.userName && <small style={{ color: 'red' }}>{formErrors.userName}</small>
               }
             </div>
 
             <div className="form-group">
-              <label htmlFor="exampleInputEmail1" style={{ color: 'black' }}>Email address :</label>
-              <input type="email" className="form-control" id="exampleInputEmail2" aria-describedby="emailHelp" placeholder="Enter your email address" value={formValues.email} onChange={handleEmail} />
+              <label htmlFor="exampleInputEmail1" className='text-dark'>Email Address :</label>
+              <input type="email" className="form-control bg-light text-dark" id="exampleInputEmail2" aria-describedby="emailHelp" placeholder="Enter your email address" value={formValues.email} onChange={handleEmail} />
               {
                 formErrors.email && <small style={{ color: 'red' }}>{formErrors.email}</small>
               }
             </div>
             <div className="form-group">
-              <label htmlFor="exampleInputEmail1" style={{ color: 'black' }}>Phone :</label>
-              <input type="tel" className="form-control" id="exampleInputEmail3" aria-describedby="emailHelp" placeholder="Enter your phone number" onChange={handlePhone} value={formValues.phone} maxLength={10} />
+              <label htmlFor="exampleInputEmail1" className='text-dark'>Phone :</label>
+              <input type="tel" className="form-control bg-light text-dark" id="exampleInputEmail3" aria-describedby="emailHelp" placeholder="Enter your phone number" onChange={handlePhone} value={formValues.phone} maxLength={10} />
               {
                 formErrors.phone && <small style={{ color: 'red' }}>{formErrors.phone}</small>
               }
             </div>
             <div className="form-group">
-              <label htmlFor="exampleInputPassword1" style={{ color: 'black' }}>Password :</label>
-              <input type="password" className="form-control" id="exampleInputPassword1" placeholder=" Enter New Password" onChange={handlePassword} value={formValues.password} />
+              <label htmlFor="exampleInputPassword1" className='text-dark'>Password :</label>
+              <input type="password" className="form-control bg-light text-dark" id="exampleInputPassword1" placeholder=" Enter New Password" onChange={handlePassword} value={formValues.password} />
               {
                 formErrors.password && <small style={{ color: 'red' }}>{formErrors.password}</small>
               }
@@ -152,18 +144,6 @@ function RegistrationModal({ handleRegisterModal }) {
           </Button>
           <button type="submit" className="btn btn-primary" onClick={saveUser}>Submit</button>
         </Modal.Footer>
-        <ToastContainer
-          position="top-center"
-          autoClose={5000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          theme="colored"
-        />
       </Modal>
     </>
   );

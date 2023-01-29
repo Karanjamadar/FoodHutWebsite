@@ -1,5 +1,5 @@
 import React, { useEffect, useLayoutEffect, useState } from 'react'
-import { Navigate, useLocation, useNavigate } from 'react-router-dom'
+import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom'
 import { toast, ToastContainer } from 'react-toastify'
 import img from '../assets/imgs/about-section.jpg'
 import loginValidation from '../validations/loginValidation'
@@ -121,14 +121,14 @@ const Login = () => {
               <div>
                 <div className="form-group first">
                   <label htmlFor="exampleInputEmail1" className='text-dark'>Email :</label>
-                  <input type="tel" className="form-control text-dark" id="exampleInputEmail3" aria-describedby="emailHelp" placeholder="Enter your email address" onChange={handleEmail} value={formValues.email} />
+                  <input type="tel" className="form-control bg-light text-dark" id="exampleInputEmail3" aria-describedby="emailHelp" placeholder="Enter your email address" onChange={handleEmail} value={formValues.email} />
                   {formErrors.email &&
                     <small style={{ color: 'red' }}>{formErrors.email}</small>
                   }
                 </div>
                 <div className="form-group last mb-3">
                   <label htmlFor="exampleInputPassword1" className='text-dark'>Password :</label>
-                  <input type="password" className="form-control" id="exampleInputPassword1" placeholder=" Enter your Password" onChange={handlePassword} value={formValues.password} />
+                  <input type="password" className="form-control bg-light text-dark" id="exampleInputPassword1" placeholder=" Enter your Password" onChange={handlePassword} value={formValues.password} />
                   {formErrors.password &&
                     <small style={{ color: 'red' }}>{formErrors.password}</small>
                   }
@@ -137,14 +137,13 @@ const Login = () => {
 
                 <div className="d-flex mb-5 align-items-center">
 
-                  <span className="ml-auto"><a href="#" className="forgot-pass" onClick={handleRegisterModal}> Don't have an account?</a></span>
+                  <span className="ml-auto"><Link className="forgot-pass text-primary" onClick={handleRegisterModal}> Don't have an account?</Link></span>
                 </div>
                 {
                   showRegisterModal && <RegistrationModal handleRegisterModal={handleRegisterModal} />
                 }
 
                 <button type='submit' className="btn btn-block btn-primary" onClick={handleSubmit}>Submit</button>
-                <ToastContainer position='top-center' />
               </div>
             </div>
           </div>

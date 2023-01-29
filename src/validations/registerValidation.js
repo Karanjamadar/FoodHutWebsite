@@ -3,21 +3,21 @@
 const registerValidation = payload => {
   let errors = {};
   if (!payload.userName) {
-    errors.name = "Name Required"
+    errors.userName = "Please Enter Full Name"
   }
 
   if (!payload.email) {
-    errors.email = "Email Required";
+    errors.email = "Please Enter Email Address";
   } else {
     const emailRegExp = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
     const emailValidCheck = emailRegExp.test(payload.email);
     if (emailValidCheck === false) {
-      errors.email = "Please Enter Valid Email";
+      errors.email = "Please Enter Valid Email Address";
     }
   }
 
   if (!payload.phone) {
-    errors.phone = "Phone Required"
+    errors.phone = "Please Enter your Phone Number"
     // } else {
     //   var myPhoneRegex = /\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/;
     //   const phoneValid = myPhoneRegex.test(payload.phone)
@@ -28,7 +28,7 @@ const registerValidation = payload => {
 
 
   if (!payload.password) {
-    errors.password = "Password Required";
+    errors.password = "Please Enter Password";
   }
   return errors;
 };

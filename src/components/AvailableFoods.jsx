@@ -21,9 +21,9 @@ const AvailableFoods = () => {
         {
           isLoading ? <div className="spinner-border text-success mx-auto my-auto" style={{ height: "100px", width: "100px" }} role="status">
             <span className="sr-only">Loading...</span>
-          </div> : foods?.map((item, index) => {
+          </div> : foods?.map((item) => {
             return (
-              <div className="col-sm-6 col-lg-3 mt-4" key={index}>
+              <div className="col-sm-6 col-lg-3 mt-4" key={item?.id}>
                 <div className='gallary-item wow fadeIn border border-white rounded h-100 mb-1 mt-0 bg-body b bg-secondary' >
                   <img src={item?.image} alt="failed to load" className="gallary-img" height={300} />
                   {/* <Link to={`/details/${item.id}`} className="gallary-overlay" >
@@ -49,7 +49,7 @@ const AvailableFoods = () => {
                       }
                     </p>
                   </div>
-                  <h1 className="text-center mb-auto mb-auto"><Link href="#" className="badge badge-primary">${item?.price}</Link></h1>
+                  <h1 className="text-center mb-auto mb-auto"><Link className="badge badge-primary">${item?.price}</Link></h1>
                 </div>
               </div>
 

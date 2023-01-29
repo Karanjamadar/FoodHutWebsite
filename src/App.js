@@ -27,7 +27,7 @@ const AvailableFoods = lazy(() => import('./components/AvailableFoods'));
 const FoodDetails = lazy(() => import('./components/FoodDetails'));
 const Blogs = lazy(() => import('./components/Blogs'));
 const Reviews = lazy(() => import('./components/Reviews'));
-const ContactUs = lazy(() => import('./components/Reviews'));
+const ContactUs = lazy(() => import('./components/ContactUs'));
 const RegistrationModal = lazy(() => import('./components/RegistrationModal'));
 const Food = lazy(() => import('./components/Food'));
 const Juice = lazy(() => import('./components/Juice'));
