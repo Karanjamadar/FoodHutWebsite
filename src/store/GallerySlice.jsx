@@ -1,11 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-export const Statuses = Object.freeze({
-    IDLE: 'idle',
-    ERROR: 'error',
-    LOADING: 'loading'
-})
+
 const GallerySlice = createSlice({
     name: 'gallery',
     initialState: {

@@ -31,7 +31,7 @@ function LoginModal({ handleLoginModal }) {
           localStorage.removeItem('userEmail')
           localStorage.removeItem('userPhone')
           localStorage.removeItem('loggedIn')
-          navigation('/')
+          navigation('/',{replace:true})
           swal("Logout Successful", {
             icon: "success",
           });

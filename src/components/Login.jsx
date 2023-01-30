@@ -42,7 +42,6 @@ const Login = () => {
 
 
   }
-  const navigate = useNavigate()
 
 
 
@@ -90,7 +89,7 @@ const Login = () => {
             });
             // swal(title response.message)
             setTimeout(() => {
-              navigate('home', { replace: true });
+              navigation('home', { replace: true });
             }, 2000);
 
             localStorage.setItem('userName', response.data.name)

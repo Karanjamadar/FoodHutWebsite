@@ -1,7 +1,20 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { fetchReviews } from '../store/reviewSlice'
 
 const Reviews = () => {
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        dispatch(fetchReviews())
+    }, [])
+    
+
+const {review, isLoading } = useSelector(state=>state.review)
+
+console.log({review})
+
   return (
     <>
     <section className="section-medium section-arrow--bottom-center section-arrow-primary-color bg-secondary" style={{marginTop:105 }}>
@@ -21,7 +34,7 @@ const Reviews = () => {
         <div className="row testimonial-three testimonial-three--col-three">
             <div className="col-md-4 testimonial-three-col">
                 <div className="testimonial-inner">
-                    <div className="testimonial-image" itemprop="image">
+                    <div className="testimonial-image" itemProp="image">
                         <img width="180" height="180" src="https://bootdey.com/img/Content/avatar/avatar1.png"/>
                     </div>
                     <div className="testimonial-content">
@@ -30,15 +43,15 @@ const Reviews = () => {
                         </p>
                     </div>
                     <div className="testimonial-meta">
-                        <strong className="testimonial-name text-dark" itemprop="name">Anna Vandana</strong>
-                        <span className="testimonial-job-title text-dark" itemprop="jobTitle">CEO</span> – <Link className="testimonial-link" >Media Wiki</Link>
+                        <strong className="testimonial-name text-dark" itemProp="name">Anna Vandana</strong>
+                        <span className="testimonial-job-title text-dark" itemProp="jobTitle">CEO</span> <Link className="testimonial-link" >Media Wiki</Link>
                     </div>
                 </div>
             </div>
 
             <div className="col-md-4 testimonial-three-col">
                 <div className="testimonial-inner">
-                    <div className="testimonial-image" itemprop="image">
+                    <div className="testimonial-image" itemProp="image">
                         <img width="180" height="180" src="https://bootdey.com/img/Content/avatar/avatar2.png"/>
                     </div>
 
@@ -49,15 +62,15 @@ const Reviews = () => {
                     </div>
 
                     <div className="testimonial-meta">
-                        <strong className="testimonial-name text-dark" itemprop="name">Anna Vandana</strong>
-                        <span className="testimonial-job-title text-dark" itemprop="jobTitle">CEO</span> – <Link className="testimonial-link" >Media Wiki</Link>
+                        <strong className="testimonial-name text-dark" itemProp="name">Anna Vandana</strong>
+                        <span className="testimonial-job-title text-dark" itemProp="jobTitle">CEO</span> <Link className="testimonial-link" >Media Wiki</Link>
                     </div>
                 </div>
             </div>
 
             <div className="col-md-4 testimonial-three-col">
                 <div className="testimonial-inner">
-                    <div className="testimonial-image" itemprop="image">
+                    <div className="testimonial-image" itemProp="image">
                         <img width="180" height="180" src="https://bootdey.com/img/Content/avatar/avatar3.png"/>
                     </div>
                     <div className="testimonial-content">
@@ -66,15 +79,15 @@ const Reviews = () => {
                         </p>
                     </div>
                     <div className="testimonial-meta">
-                        <strong className="testimonial-name text-dark" itemprop="name">Anna Vandana</strong>
-                        <span className="testimonial-job-title" itemprop="jobTitle">CEO</span> – <Link className="testimonial-link"  >Media Wiki</Link>
+                        <strong className="testimonial-name text-dark" itemProp="name">Anna Vandana</strong>
+                        <span className="testimonial-job-title" itemProp="jobTitle">CEO</span> <Link className="testimonial-link"  >Media Wiki</Link>
                     </div>
                 </div>
             </div>
 
             <div className="col-md-4 testimonial-three-col">
                 <div className="testimonial-inner">
-                    <div className="testimonial-image" itemprop="image">
+                    <div className="testimonial-image" itemProp="image">
                         <img width="180" height="180" src="https://bootdey.com/img/Content/avatar/avatar4.png"/>
                     </div>
 
@@ -85,15 +98,15 @@ const Reviews = () => {
                     </div>
 
                     <div className="testimonial-meta">
-                        <strong className="testimonial-name text-dark" itemprop="name">Anna Vandana</strong>
-                        <span className="testimonial-job-title text-dark" itemprop="jobTitle">CEO</span> – <Link className="testimonial-link" >Media Wiki</Link>
+                        <strong className="testimonial-name text-dark" itemProp="name">Anna Vandana</strong>
+                        <span className="testimonial-job-title text-dark" itemProp="jobTitle">CEO</span> – <Link className="testimonial-link" >Media Wiki</Link>
                     </div>
                 </div>
             </div>
 
             <div className="col-md-4 testimonial-three-col">
                 <div className="testimonial-inner">
-                    <div className="testimonial-image" itemprop="image">
+                    <div className="testimonial-image" itemProp="image">
                         <img width="180" height="180" src="https://bootdey.com/img/Content/avatar/avatar5.png"/>
                     </div>
                     <div className="testimonial-content">
@@ -102,15 +115,15 @@ const Reviews = () => {
                         </p>
                     </div>
                     <div className="testimonial-meta">
-                        <strong className="testimonial-name text-dark" itemprop="name">Anna Vandana</strong>
-                        <span className="testimonial-job-title text-dark" itemprop="jobTitle">CEO</span> – <Link className="testimonial-link">Media Wiki</Link>
+                        <strong className="testimonial-name text-dark" itemProp="name">Anna Vandana</strong>
+                        <span className="testimonial-job-title text-dark" itemProp="jobTitle">CEO</span> – <Link className="testimonial-link">Media Wiki</Link>
                     </div>
                 </div>
             </div>
 
             <div className="col-md-4 testimonial-three-col">
                 <div className="testimonial-inner">
-                    <div className="testimonial-image" itemprop="image">
+                    <div className="testimonial-image" itemProp="image">
                         <img width="180" height="180" src="https://bootdey.com/img/Content/avatar/avatar6.png"/>
                     </div>
 
@@ -121,12 +134,40 @@ const Reviews = () => {
                     </div>
 
                     <div className="testimonial-meta">
-                        <strong className="testimonial-name text-dark" itemprop="name">Anna Vandana</strong>
-                        <span className="testimonial-job-title text-dark" itemprop="jobTitle">CEO</span> – <Link className="testimonial-link" href="#" >Media Wiki</Link>
+                        <strong className="testimonial-name text-dark" itemProp="name">Anna Vandana</strong>
+                        <span className="testimonial-job-title text-dark" itemProp="jobTitle">CEO</span> – <Link className="testimonial-link" href="#" >Media Wiki</Link>
                     </div>
                 </div>
             </div>
+
+        
+        {
+            review.map((item)=>{
+                return(
+                    <div className="col-md-4 testimonial-three-col">
+                <div className="testimonial-inner">
+                    <div className="testimonial-image" itemProp="image">
+                        <img width="180" height="180" src="https://bootdey.com/img/Content/avatar/avatar6.png"/>
+                    </div>
+
+                    <div className="testimonial-content">
+                        <p>
+                           {item.body}
+                        </p>
+                    </div>
+
+                    <div className="testimonial-meta">
+                        <strong className="testimonial-name text-dark" itemProp="name">Anna Vandana</strong>
+                        <span className="testimonial-job-title text-dark" itemProp="jobTitle">CEO</span> – <Link className="testimonial-link" href="#" >Media Wiki</Link>
+                    </div>
+                </div>
+            </div>
+                )
+
+            })
+        }
         </div>
+        
     </div>
 </section>
 </>
