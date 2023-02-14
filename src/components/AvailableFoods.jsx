@@ -2,11 +2,12 @@ import React, { useEffect } from 'react'
 import images from '../const/images'
 import { fetchFood } from '../store/FoodSlice'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate, useNavigation } from 'react-router-dom'
 import "../assets/vendors/animate/animate.css"
 import "../assets/css/foodhut.css"
 import "../assets/vendors/themify-icons/css/themify-icons.css"
-const AvailableFoods = () => {
+const AvailableFoods = ({}) => {
+  const navigate = useNavigate();
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(fetchFood())
@@ -22,8 +23,9 @@ const AvailableFoods = () => {
           isLoading ? <div className="spinner-border text-success mx-auto my-auto" style={{ height: "100px", width: "100px" }} role="status">
             <span className="sr-only">Loading...</span>
           </div> : foods?.map((item) => {
+            const id = item.id;
             return (
-              <div className="col-sm-6 col-lg-3 mt-4" key={item?.id}>
+              <div className="col-sm-6 col-lg-3 mt-4" key={item?.id} onClick={()=>navigate(`/details/${id}`)}>
                 <div className='gallary-item wow fadeIn border border-white rounded h-100 mb-1 mt-0 bg-body b bg-secondary' >
                   <img src={item?.image} alt="failed to load" className="gallary-img" height={300} />
                   {/* <Link to={`/details/${item.id}`} className="gallary-overlay" >
@@ -33,7 +35,7 @@ const AvailableFoods = () => {
                     <h4 className="pt20 pb20">{item?.name}</h4>
                     <p className="text-white">ingredients : [ {
                       item?.ingredients?.map((ingredient) => {
-                        return (
+                                return (
                           <small>{ingredient},</small>
                         )
                       })
@@ -49,7 +51,7 @@ const AvailableFoods = () => {
                       }
                     </p>
                   </div>
-                  <h1 className="text-center mb-auto mb-auto"><Link className="badge badge-primary">${item?.price}</Link></h1>
+                  <h1 className="text-center mb-auto mb-auto"><Link className="badge badge-primary" >${item?.price}</Link></h1>
                 </div>
               </div>
 

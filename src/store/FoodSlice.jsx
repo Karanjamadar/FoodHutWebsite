@@ -54,10 +54,7 @@ export const fetchFood = createAsyncThunk(
 export const fetchSingleFood = createAsyncThunk(
     "food/fetchSingleFood",
     async (id) => {
-
-        const response = await axios.post("http://localhost:3001/get-food-items", {
-            id
-        })
+        const response = await axios.post("http://localhost:3001/get-food-items", {id})
         return response.data;
 
     })
