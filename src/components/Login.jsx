@@ -81,7 +81,8 @@ const Login = () => {
       dispatch(login(formValuesData))
         .unwrap()
         .then(response => {
-          if (response.status === 'ok') {
+          console.log(response)
+          if (response.success === true) {
             swal({
               title: "Success",
               text: response.message,
@@ -92,10 +93,11 @@ const Login = () => {
               navigation('home', { replace: true });
             }, 2000);
 
-            localStorage.setItem('userName', response.data.name)
-            localStorage.setItem('userEmail', response.data.email)
-            localStorage.setItem('userPhone', response.data.phone)
-          } else if (response.status === 'error') {
+            localStorage.setItem('userName', response.data[0].name)
+            localStorage.setItem('userEmail', response.data[0].email)
+            localStorage.setItem('userPhone', response.data[0].phone)
+            localStorage.setItem('loggedIn', true);
+          } else if (response.success === false) {
             swal({
               title: "Failed",
               text: response.message,
