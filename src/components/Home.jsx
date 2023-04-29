@@ -10,7 +10,7 @@ import Juice from './Juice'
 import GoogleMap from './GoogleMap'
 
 const Home = () => {
-  const [show, setShow] = useState(false);
+  const [show, setShow] = useState('juice');
   return (
     <div>
 
@@ -21,10 +21,6 @@ const Home = () => {
           <Link className="btn btn-lg btn-primary" to="/gallery">View Our gallary</Link>
         </div>
       </header>
-
-
-
-
 
       <div className="container-fluid has-bg-overlay text-center text-light has-height-lg middle-items" id="book-table">
         <div className="">
@@ -47,29 +43,26 @@ const Home = () => {
         </div>
       </div>
 
-
       <div id="blog" className="container-fluid bg-dark text-light py-5 text-center wow fadeIn">
         <h2 className="section-title py-5">EVENTS AT THE FOOD HUT</h2>
         <div className="row justify-content-center">
           <div className="col-sm-7 col-md-4 mb-5">
             <ul className="nav nav-pills nav-justified mb-3" id="pills-tab" role="tablist">
               <li className="nav-item">
-                <Link className="btn btn-primary  ml-5" id="pills-home-tab" to={"#foods"} role="tab" aria-controls="pills-home" onClick={() => setShow(false)}>Foods</Link>
+                <Link className="btn btn-primary  ml-5" id="pills-home-tab" to={"#foods"} role="tab" aria-controls="pills-home" onClick={() => setShow('foods')}>Foods</Link>
               </li>
               <li className="nav-item">
-                <Link className="btn btn-primary mr-5" id="pills-home-tab" to={"#juice"} role="tab" aria-controls="pills-profile" onClick={() => setShow(true)}>Juices</Link>
+                <Link className="btn btn-primary mr-5" id="pills-home-tab" to={"#juice"} role="tab" aria-controls="pills-profile" onClick={() => setShow('juice')}>Juices</Link>
               </li>
             </ul>
           </div>
         </div>
         <div className="tab-content" id="pills-tabContent">
           {
-            show ? <Juice /> : <Food />
+            show === 'juice' ? <Juice /> : <Food />
           }
-
         </div>
       </div>
-
 
       <div id="testmonial" className="container-fluid wow fadeIn bg-secondary text-light has-height-lg middle-items">
         <h2 className="section-title my-5 text-center">REVIEWS</h2>
@@ -104,7 +97,6 @@ const Home = () => {
         </div>
       </div>
 
-
       <div id="contact" className="container-fluid bg-dark text-light border-top wow fadeIn">
         <div className="row">
           <div className="col-md-6 px-0">
@@ -121,7 +113,6 @@ const Home = () => {
           </div>
         </div>
       </div>
-
 
       <div className="container-fluid bg-primary text-light has-height-md middle-items border-top text-center wow fadeIn">
         <div className="row">
@@ -143,8 +134,6 @@ const Home = () => {
         <p className="mb-0 py-3 text-muted small">&copy; Copyright {new Date().getFullYear()}</p>
       </div>
     </div >
-
-
   )
 }
 

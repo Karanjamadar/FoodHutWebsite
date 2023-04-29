@@ -93,9 +93,9 @@ const Login = () => {
               navigation('home', { replace: true });
             }, 2000);
 
-            localStorage.setItem('userName', response.data[0].name)
-            localStorage.setItem('userEmail', response.data[0].email)
-            localStorage.setItem('userPhone', response.data[0].phone)
+            localStorage.setItem('userName', response.data.name)
+            localStorage.setItem('userEmail', response.data.email)
+            localStorage.setItem('userPhone', response.data.phone)
             localStorage.setItem('loggedIn', true);
           } else if (response.success === false) {
             swal({
