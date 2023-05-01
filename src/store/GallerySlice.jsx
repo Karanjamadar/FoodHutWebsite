@@ -32,6 +32,6 @@ export default GallerySlice.reducer;
 export const fetchGalleryItems = createAsyncThunk(
     "gallery/fetch",
     async () => {
-        const response = await axios.get("http://localhost:3001/get-gallery-items")
+        const response = await axios.get("http://localhost:3001/gallery/get-gallery-items")
         return response.data;
     })

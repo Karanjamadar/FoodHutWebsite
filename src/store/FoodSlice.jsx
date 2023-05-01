@@ -47,14 +47,14 @@ export default FoodSlice.reducer;
 export const fetchFood = createAsyncThunk(
     "foods/fetch",
     async () => {
-        const response = await axios.get("http://localhost:3001/get-food-items")
+        const response = await axios.get("http://localhost:3001/food/get-food-items")
         return response.data;
 
     })
 export const fetchSingleFood = createAsyncThunk(
     "food/fetchSingleFood",
     async (id) => {
-        const response = await axios.post(`http://localhost:3001/get-food`,id);
+        const response = await axios.post(`http://localhost:3001/food/get-food`,id);
         return response.data;
 
     })
