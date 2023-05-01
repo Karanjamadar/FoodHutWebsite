@@ -7,7 +7,7 @@ import axios from 'axios';
 export const login = createAsyncThunk(
   'auth/email',
   async (payload) => {
-    let response = await axios.post('http://localhost:3001/login', payload);
+    let response = await axios.post('http://localhost:3001/user/login', payload);
     console.log(response.data)
     return response.data;
   },

@@ -37,7 +37,7 @@ function RegistrationModal({ handleRegisterModal }) {
     if (Object.keys(validation).length > 0) {
       setformErrors(validation)
     } else {
-      const resp = await axios.post('http://localhost:3001/register', formValueData);
+      const resp = await axios.post('http://localhost:3001/user/register', formValueData);
       if (resp) {
         console.log(resp.data);
         handleRegisterModal()
