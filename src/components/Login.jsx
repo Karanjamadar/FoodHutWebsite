@@ -1,7 +1,6 @@
-import React, { useEffect, useLayoutEffect, useState } from 'react'
-import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom'
-import { toast, ToastContainer } from 'react-toastify'
-import img from '../assets/imgs/about-section.jpg'
+import React, { useEffect, useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import img from '../assets/imgs/Image.jpg'
 import loginValidation from '../validations/loginValidation'
 import { useDispatch } from 'react-redux'
 import { login } from '../store/authSlice'
@@ -15,13 +14,11 @@ const Login = () => {
   const navigation = useNavigate()
   useEffect(() => {
     const isLogged = localStorage.getItem("loggedIn")
-    if (isLogged == 'true') {
+    if (isLogged === 'true') {
       navigation("/home")
     }
+    // eslint-disable-next-line
   }, [])
-
-
-
   const initialFormValues = {
     email: '',
     password: '',
@@ -34,16 +31,11 @@ const Login = () => {
   const [formErrors, setFormErrors] = useState(initialFormErrors)
   const [showRegisterModal, setShowRegisterModal] = useState(false)
 
-
   const handleRegisterModal = () => {
-
-    setShowRegisterModal(showRegisterModal => !showRegisterModal)
-
-
-
+    console.log("Hello World")
+    // setShowRegisterModal(showRegisterModal => !showRegisterModal)
+    navigation("/register")
   }
-
-
 
   const handleEmail = (e) => {
     setFormValues({
@@ -81,7 +73,6 @@ const Login = () => {
       dispatch(login(formValuesData))
         .unwrap()
         .then(response => {
-          console.log(response)
           if (response.success === true) {
             swal({
               title: "Success",
@@ -96,6 +87,7 @@ const Login = () => {
             localStorage.setItem('userName', response.data.name)
             localStorage.setItem('userEmail', response.data.email)
             localStorage.setItem('userPhone', response.data.phone)
+            localStorage.setItem('token', response.token)
             localStorage.setItem('loggedIn', true);
           } else if (response.success === false) {
             swal({
@@ -111,14 +103,13 @@ const Login = () => {
 
   return (
     <div className="d-lg-flex half" >
-      <div className="bg order-1 order-md-2" style={{ background: 'url(' + img + ')', backgroundSize: 'auto' }}></div>
+      <div className="bg order-1 order-md-2" style={{ background: 'url(' + img + ')', backgroundSize: 'cover' }}></div>
       <div className="contents order-2 order-md-1">
-
         <div className="container">
           <div className="row align-items-center justify-content-center">
             <div className="col-md-7">
-              <h3 className='text-primary'>Login to <strong className='text-primary'>FoodHut</strong></h3>
-              <p className="mb-4 text-dark">FoodHut is the food based website which has millions of customer base why don't you join us!!!</p>
+              <h3 className='text-primary'>Log in with your  <strong className='text-primary'>FoodHut</strong> account</h3>
+              <p className="mb-4 text-dark">FoodHut is the food based website which has millions of customer base so why don't you join us!!!</p>
               <div>
                 <div className="form-group first">
                   <label htmlFor="exampleInputEmail1" className='text-dark'>Email :</label>
@@ -133,18 +124,13 @@ const Login = () => {
                   {formErrors.password &&
                     <small style={{ color: 'red' }}>{formErrors.password}</small>
                   }
-
                 </div>
-
                 <div className="d-flex mb-5 align-items-center">
-
-                  <span className="ml-auto"><Link className="forgot-pass text-primary" onClick={handleRegisterModal}> Don't have an account?</Link></span>
+                  <span className="ml-auto"><Link className="forgot-pass text-primary" to='/register'> Don't have an account?</Link></span>
                 </div>
-                {
-                  showRegisterModal && <RegistrationModal handleRegisterModal={handleRegisterModal} />
-                }
 
-                <button type='submit' className="btn btn-block btn-primary" onClick={handleSubmit}>Submit</button>
+                <button type='submit' className="btn btn-block btn-primary" onClick={handleSubmit}>LOGIN</button>
+
               </div>
             </div>
           </div>

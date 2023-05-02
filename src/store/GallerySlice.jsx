@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { apiPrivate } from '../config/api';
 
 
 const GallerySlice = createSlice({
@@ -32,6 +33,6 @@ export default GallerySlice.reducer;
 export const fetchGalleryItems = createAsyncThunk(
     "gallery/fetch",
     async () => {
-        const response = await axios.get("http://localhost:3001/gallery/get-gallery-items")
+        const response = await apiPrivate.get("/gallery/get-gallery-items")
         return response.data;
     })

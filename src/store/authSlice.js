@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { apiPublic } from '../config/api';
 
 
 
@@ -7,10 +8,19 @@ import axios from 'axios';
 export const login = createAsyncThunk(
   'auth/email',
   async (payload) => {
-    let response = await axios.post('http://localhost:3001/user/login', payload);
+    let response = await apiPublic.post('/user/login', payload);
     console.log(response.data)
     return response.data;
   },
+);
+
+export const register = createAsyncThunk(
+  'auth/register',
+  async (payload) => {
+    let response = await apiPublic.post('/user/register', payload);
+    console.log(response.data)
+    return response.data;
+  }
 );
 
 // export const logout = createAsyncThunk(

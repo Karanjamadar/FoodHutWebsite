@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
-import axios from 'axios';
 import registerValidation from '../validations/registerValidation';
 import swal from 'sweetalert';
+import { useDispatch } from 'react-redux';
+import { register } from '../store/authSlice';
 
 function RegistrationModal({ handleRegisterModal }) {
-
   const initialFormValues = {
     userName: '',
     email: '',
@@ -32,22 +32,34 @@ function RegistrationModal({ handleRegisterModal }) {
 
   }
 
+  const dispatch = useDispatch();
+
   const saveUser = async () => {
     const validation = registerValidation(formValues)
     if (Object.keys(validation).length > 0) {
       setformErrors(validation)
     } else {
-      const resp = await axios.post('http://localhost:3001/user/register', formValueData);
-      if (resp) {
-        console.log(resp.data);
-        handleRegisterModal()
-        swal({
-          title: "Success",
-          text: resp.message,
-          icon: "success",
-        });
-
-      }
+      dispatch(register(formValueData))
+        .unwrap()
+        .then((response) => {
+          if (response.success === true) {
+            swal({
+              title: "Success",
+              text: response.message,
+              icon: "success",
+            }).then((willNavigate) => {
+              if (willNavigate) {
+                handleRegisterModal()
+              }
+            })
+          } else if (response.success === false) {
+            swal({
+              title: "Failed",
+              text: response.message,
+              icon: "error",
+            });
+          }
+        })
     }
   }
 

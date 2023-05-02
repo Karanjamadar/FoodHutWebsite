@@ -5,6 +5,8 @@ import "./assets/css/foodhut.css"
 import "./assets/vendors/themify-icons/css/themify-icons.css"
 import { Route, Routes } from 'react-router-dom';
 import Layout from './layout/Layout';
+import Register from './components/Register';
+
 
 // import Login from './components/Login';
 // import Home from './components/Home';
@@ -41,6 +43,7 @@ function App() {
         {/* these are the public route */}
 
         <Route path="/" element={<Login />} />
+        <Route path="/register" element={<Register />} />
 
         {/* these are the private Routes */}
         <Route element={<PrivateLayout />}>

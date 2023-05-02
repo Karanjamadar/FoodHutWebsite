@@ -1,33 +1,34 @@
 import axios from "axios";
-import { createSlice,createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { apiPrivate } from "../config/api";
 
 
 const reviewSlice = createSlice({
-    name:'review',
-    initialState:{
-        isLoading:false,
-        review:[]
+    name: 'review',
+    initialState: {
+        isLoading: false,
+        review: []
     },
-    reducers:{
+    reducers: {
     },
-    extraReducers:(builder)=>{
-        builder.addCase(fetchReviews.pending, (state,actions)=>{
+    extraReducers: (builder) => {
+        builder.addCase(fetchReviews.pending, (state, actions) => {
             state.isLoading = true
         })
-        builder.addCase(fetchReviews.fulfilled,(state,actions)=>{
-            state.review=actions.payload
+        builder.addCase(fetchReviews.fulfilled, (state, actions) => {
+            state.review = actions.payload
             state.isLoading = false
         })
-        builder.addCase(fetchReviews.rejected, (state,actions)=>{
-            state.isLoading= true
+        builder.addCase(fetchReviews.rejected, (state, actions) => {
+            state.isLoading = true
         })
     }
 })
 export default reviewSlice.reducer;
 
-export const fetchReviews=createAsyncThunk(
+export const fetchReviews = createAsyncThunk(
     "review/fetch",
-    async()=>{
-        const response = await axios.get("http://localhost:3001/get-review")
+    async () => {
+        const response = await apiPrivate.get("/get-review")
         return response.data
     })

@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { apiPrivate } from '../config/api';
 
 export const Statuses = Object.freeze({
     IDLE: 'idle',
@@ -47,14 +48,12 @@ export default FoodSlice.reducer;
 export const fetchFood = createAsyncThunk(
     "foods/fetch",
     async () => {
-        const response = await axios.get("http://localhost:3001/food/get-food-items")
+        const response = await apiPrivate.get("/food/get-food-items")
         return response.data;
-
     })
 export const fetchSingleFood = createAsyncThunk(
     "food/fetchSingleFood",
     async (id) => {
-        const response = await axios.post(`http://localhost:3001/food/get-food`,id);
+        const response = await apiPrivate.post("/food/get-single-food-item", { id });
         return response.data;
-
     })

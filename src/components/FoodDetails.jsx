@@ -7,11 +7,10 @@ import { fetchSingleFood, fetchsingleFood } from '../store/FoodSlice'
 const FoodDetails = () => {
   const { id } = useParams()
   const dispatch = useDispatch()
-
-
+  const intId = parseInt(id)
 
   useEffect(() => {
-    dispatch(fetchSingleFood(id))
+    dispatch(fetchSingleFood(intId))
 
   }, [])
   const { food, isloading } = useSelector((state) => state.food)
@@ -19,39 +18,37 @@ const FoodDetails = () => {
     <>
       <div className=" d-flex justify-content-center p-4 row mt-5 pt-5 header">
         {
-          isloading ? <div className="spinner-border text-success mx-auto my-auto" style={{ height: "100px", width: "100px"}} role="status">
+          isloading ? <div className="spinner-border text-success mx-auto my-auto" style={{ height: "100px", width: "100px" }} role="status">
             <span className="sr-only">Loading...</span>
-          </div> : 
+          </div> :
             <div key={food?.id}>
-                <div className='gallary-item wow fadeIn border border-white rounded h-100 mb-1 mt-0 bg-body b bg-secondary' >
-                  <img src={food?.image} alt="failed to load" className="gallary-img" style={{height:400, marginLeft:30}} />
-                  <div style={{paddingLeft:100, paddingRight:100,marginLeft:100}}>
-                    <h4>{food?.name}</h4>
-                    <p className="text-white">ingredients : [ {
-                      food?.ingredients?.map((ingredient) => {
-                                return (
-                          <small>{ingredient},</small>
-                        )
-                      })
-                    }]</p>
-                    <p className="text-white">spicy :
-                      {
-                        food?.spicy ? <small> It is spicy</small> : <small> It is not spicy</small>
-                      }
-                    </p>
-                    <p>
-                      {
-                        food?.vegetarian ? <small className="text-white"> It is Veg</small> : <small> It is Non-Veg</small>
-                      }
-                    </p>
-                    <h1>Order Now</h1>
-                  </div>
-                 
-                  <h1 className="text-center mb-auto mb-auto"><Link className="badge badge-primary" >${food?.price}</Link></h1>
+              <div className='gallary-item wow fadeIn border border-white rounded h-100 mb-1 mt-0 bg-body  bg-secondary' style={{ display: 'flex', alignItems: 'center', flexDirection: 'column', width: '800px', borderRadius: 30 }} >
+                <img src={food?.image} alt="failed to load" className="gallary-img" style={{ height: '400px', width: '700px', marginTop: '50px', borderRadius: 30 }} />
+                <div style={{ marginTop: '50px', display: 'flex', alignContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
+                  <h4>{food?.name}</h4>
+                  <p className="text-white">ingredients : [ {
+                    food?.ingredients?.map((ingredient) => {
+                      return (
+                        <small>{ingredient},</small>
+                      )
+                    })
+                  }]</p>
+                  <p className="text-white">spicy :
+                    {
+                      food?.spicy === 'true' ? <small> It is spicy</small> : <small> It is not spicy</small>
+                    }
+                  </p>
+                  <p>
+                    {
+                      food?.vegetarian === 'true' ? <small className="text-white"> It is Veg</small> : <small> It is Non-Veg</small>
+                    }
+                  </p>
+                  <h1>Order Now</h1>
                 </div>
+                <h1 className="text-center mb-auto mb-auto"><Link className="badge badge-primary" >₹{food?.price}</Link></h1>
               </div>
-
-        } 
+            </div>
+        }
       </div>
     </>
   )
