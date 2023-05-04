@@ -2,7 +2,7 @@ import React from 'react'
 
 const About = () => {
   return (
-    <div id="about" className="container-fluid wow fadeIn mt-5 pt-5 bg-dark" data-wow-duration="1.5s">
+    <div id="about" className="container-fluid wow fadeIn mt-0 pt-5 bg-dark" data-wow-duration="1.5s">
       <div className="row">
         <div className="col-lg-6 has-img-bg"></div>
         <div className="col-lg-6">

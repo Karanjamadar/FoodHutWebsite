@@ -1,4 +1,3 @@
-import axios from "axios";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { apiPrivate } from "../config/api";
 
@@ -28,7 +27,7 @@ export default reviewSlice.reducer;
 
 export const fetchReviews = createAsyncThunk(
     "review/fetch",
-    async () => {
-        const response = await apiPrivate.get("/get-review")
+    async (payload) => {
+        const response = await apiPrivate.post("/get-review", payload);
         return response.data
     })

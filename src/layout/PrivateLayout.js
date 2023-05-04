@@ -13,10 +13,14 @@ const PrivateLayout = ({ children }) => {
         isLoggedIn ?
           <>
             <Navbar />
-            <Suspense fallback={<div class="spinner-border text-success" style={{ marginTop: 150, marginLeft: "650px", marginRight: 'auto' }} role="status">
-              <span class="sr-only" >Loading...</span>
-            </div>}>
-              <Outlet />
+            <Suspense>
+              <div style={{
+                paddingTop: '100px', '@media (maxWidth: 979px)': {
+                  paddingTop: '0px',
+                },
+              }}>
+                <Outlet />
+              </div>
             </Suspense>
           </>
           :

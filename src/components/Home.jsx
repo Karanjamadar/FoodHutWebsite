@@ -16,7 +16,7 @@ const Home = () => {
 
       <header id="home" className="header">
         <div className="overlay text-white text-center">
-          <h1 className="display-2 font-weight-bold my-3">FoodHut</h1>
+          <h1 className="display-2 font-weight-bold ">FoodHut</h1>
           <h2 className="display-4 mb-5">Always fresh &amp; Delightful</h2>
           <Link className="btn btn-lg btn-primary" to="/gallery">View Our gallary</Link>
         </div>
@@ -100,7 +100,7 @@ const Home = () => {
       <div id="contact" className="container-fluid bg-dark text-light border-top wow fadeIn">
         <div className="row">
           <div className="col-md-6 px-0">
-            <GoogleMap/>
+            <GoogleMap />
           </div>
           <div className="col-md-6 px-5 has-height-lg middle-items">
             <h3>FIND US</h3>

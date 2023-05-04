@@ -1,5 +1,4 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import axios from 'axios';
 import { apiPublic } from '../config/api';
 
 
@@ -22,13 +21,6 @@ export const register = createAsyncThunk(
     return response.data;
   }
 );
-
-// export const logout = createAsyncThunk(
-//   'auth/logoutStatus',
-//   async () => {
-//     console.log('In logout');
-//   },
-// );
 
 const authSlice = createSlice({
   name: 'auth',

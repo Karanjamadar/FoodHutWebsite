@@ -64,6 +64,18 @@ apiPrivate.interceptors.response.use(
           title: 'Token expired',
           text: err?.message,
           icon: "error",
+          dangerMode: true
+        }).then((willNavigate) => {
+          if (willNavigate) {
+            localStorage.removeItem('userName')
+            localStorage.removeItem('userEmail')
+            localStorage.removeItem('userPhone')
+            localStorage.removeItem('token')
+            localStorage.removeItem('loggedIn')
+            window.location.reload(true);
+          } else {
+            console.log('cancelled')
+          }
         })
       } else if (err.response.status === 500) {
         swal({

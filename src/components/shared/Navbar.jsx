@@ -20,7 +20,7 @@ const Navbar = () => {
   }
 
   return (
-    <nav className=" navbar navbar-expand-lg navbar-dark fixed-top bg-primary  border-bottom ">
+    <nav className="navbar navbar-expand-sm  navbar-dark fixed-top bg-primary border-bottom ">
       <div className="collapse navbar-collapse" id="navbarSupportedContent">
         <ul className="navbar-nav">
           <li className="nav-item">
@@ -51,7 +51,7 @@ const Navbar = () => {
             <Link className="nav-link" to="/contactUs">Contact Us</Link>
           </li>
           <li className="nav-item">
-            <Link ><img src={images.profile}  style={{height:50,width:50}}onClick={handleLoginModal}/></Link>
+            <Link ><img src={images.profile} style={{ height: 50, width: 50 }} onClick={handleLoginModal} /></Link>
           </li>
           {
             showLoginModalVisible && <LoginModal handleLoginModal={handleLoginModal} />
