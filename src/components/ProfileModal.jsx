@@ -31,7 +31,7 @@ function LoginModal({ handleLoginModal }) {
           localStorage.removeItem('userEmail')
           localStorage.removeItem('userPhone')
           localStorage.removeItem('loggedIn')
-          navigation('/',{replace:true})
+          navigation('/', { replace: true })
           swal("Logout Successful", {
             icon: "success",
           });
@@ -53,13 +53,13 @@ function LoginModal({ handleLoginModal }) {
         <Modal.Body>
           <Form>
 
-            <img src={images.profile} style={{height:80,width:80}}/>
-                      <ul class="list-unstyled mb-1-9 my-3">
-                                    <li class="mb-2 mb-xl-3 display-28" style={{ color: 'black' }}><span class="display-26 text-secondary me-2 font-weight-600" >Full Name:</span> {name}</li>
-                                    <li class="mb-2 mb-xl-3 display-28" style={{ color: 'black' }}><span class="display-26 text-secondary me-2 font-weight-600">Email:</span> {email}</li>
-                                    <li class="mb-2 mb-xl-3 display-28" style={{ color: 'black' }}><span class="display-26 text-secondary me-2 font-weight-600">Phone:</span> {phone}</li>
-                                    <li class="mb-2 mb-xl-3 display-28" style={{ color: 'black' }}><span class="display-26 text-secondary me-2 font-weight-600">Website:</span> www.FoodHut.com</li>
-                                </ul>
+            <img src={images.profile} style={{ height: 80, width: 80 }} />
+            <ul class="list-unstyled mb-1-9 my-3">
+              <li class="mb-2 mb-xl-3 display-28" style={{ color: 'black' }}><span class="display-26 text-secondary me-2 font-weight-600" >Full Name:</span> {name}</li>
+              <li class="mb-2 mb-xl-3 display-28" style={{ color: 'black' }}><span class="display-26 text-secondary me-2 font-weight-600">Email:</span> {email}</li>
+              <li class="mb-2 mb-xl-3 display-28" style={{ color: 'black' }}><span class="display-26 text-secondary me-2 font-weight-600">Phone:</span> {phone}</li>
+              <li class="mb-2 mb-xl-3 display-28" style={{ color: 'black' }}><span class="display-26 text-secondary me-2 font-weight-600">Website:</span> www.FoodHut.com</li>
+            </ul>
             {/* <div>
               <div>
                 <p style={{ color: 'black' }}>Full Name: {name}</p>
@@ -75,7 +75,7 @@ function LoginModal({ handleLoginModal }) {
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="primary" onClick={logout}> Logout</Button>
+          {/* <Button variant="primary" onClick={logout}> Logout</Button> */}
           <Button variant="secondary" onClick={handleLoginModal}>
             Close
           </Button>

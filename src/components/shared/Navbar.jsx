@@ -1,12 +1,14 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom';
 // import 'bootstrap/dist/css/bootstrap.min.css';
+import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import "../../assets/css/foodhut.css"
 import images from '../../const/images';
 
 import { useNavigate } from 'react-router-dom';
 import logo from "../../assets/imgs/logo.svg";
 import LoginModal from '../ProfileModal';
+import swal from 'sweetalert';
 const Navbar = () => {
   const navigation = useNavigate()
   const [showLoginModalVisible, setShowLoginModalVisible] = useState(false)
@@ -17,6 +19,30 @@ const Navbar = () => {
   }
   const handleRegisterModal = () => {
     setShowRegisterModalVisible(showRegisterModalVisible => !showRegisterModalVisible)
+  }
+  const logout = () => {
+
+    swal({
+      title: "Are you sure?",
+      text: "Once you logged out you need to log in again",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    })
+      .then((willDelete) => {
+        if (willDelete) {
+          localStorage.removeItem('userName')
+          localStorage.removeItem('userEmail')
+          localStorage.removeItem('userPhone')
+          localStorage.removeItem('loggedIn')
+          navigation('/', { replace: true })
+          swal("Logout Successful", {
+            icon: "success",
+          });
+        } else {
+          console.log("cancelled")
+        }
+      });
   }
 
   return (
@@ -51,8 +77,22 @@ const Navbar = () => {
             <Link className="nav-link" to="/contactUs">Contact Us</Link>
           </li>
           <li className="nav-item">
-            <Link ><img src={images.profile} style={{ height: 50, width: 50 }} onClick={handleLoginModal} /></Link>
+            <div className="dropdown">
+              {/* <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Dropdown button
+              </button> */}
+              <Link className="dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ><img src={images.profile} style={{ height: 40, width: 40 }} /></Link>
+              <div className="dropdown-menu rounded-5 border-5" aria-labelledby="dropdownMenuButton" style={{ marginLeft: -110 }}>
+                <Link className="dropdown-item text-primary" onClick={handleLoginModal}>Profile</Link>
+                <a className="dropdown-item text-primary" href="#">Another action</a>
+                <Link className="dropdown-item text-primary" onClick={logout}>Logout</Link>
+              </div>
+            </div>
           </li>
+
+          {/* <li className="nav-item">
+            <Link ><img src={images.profile} style={{ height: 50, width: 50 }} onClick={handleLoginModal} /></Link>
+          </li> */}
           {
             showLoginModalVisible && <LoginModal handleLoginModal={handleLoginModal} />
           }
