@@ -11199,6 +11199,13 @@ pre {
   bottom: 50%;
 }
 
+.header1 {
+  /* height: 100vh; */
+  /* max-height: 900px; */
+  background: url(../imgs/main.jpg) no-repeat center center fixed;
+  background-size: cover;
+  min-height: 100vh;
+}
 .header {
   height: 100vh;
   max-height: 900px;

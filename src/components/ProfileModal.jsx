@@ -57,7 +57,7 @@ function LoginModal({ handleLoginModal }) {
             <ul class="list-unstyled mb-1-9 my-3">
               <li class="mb-2 mb-xl-3 display-28" style={{ color: 'black' }}><span class="display-26 text-secondary me-2 font-weight-600" >Full Name:</span> {name}</li>
               <li class="mb-2 mb-xl-3 display-28" style={{ color: 'black' }}><span class="display-26 text-secondary me-2 font-weight-600">Email:</span> {email}</li>
-              <li class="mb-2 mb-xl-3 display-28" style={{ color: 'black' }}><span class="display-26 text-secondary me-2 font-weight-600">Phone:</span> {phone}</li>
+              <li class="mb-2 mb-xl-3 display-28" style={{ color: 'black' }}><span class="display-26 text-secondary me-2 font-weight-600">Phone:</span> +{phone}</li>
               <li class="mb-2 mb-xl-3 display-28" style={{ color: 'black' }}><span class="display-26 text-secondary me-2 font-weight-600">Website:</span> www.FoodHut.com</li>
             </ul>
             {/* <div>

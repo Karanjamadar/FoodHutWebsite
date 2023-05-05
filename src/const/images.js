@@ -18,7 +18,7 @@ const blog4 = require("../assets/imgs/blog-4.jpg");
 const blog5 = require("../assets/imgs/blog-5.jpg");
 const blog6 = require("../assets/imgs/blog-6.jpg");
 const profile = require("../assets/imgs/profile.png");
-
+const cart = require("../assets/imgs/cart.png");
 
 export default {
   logo,
@@ -40,6 +40,7 @@ export default {
   blog4,
   blog5,
   blog6,
-  profile
+  profile,
+  cart
 
 }

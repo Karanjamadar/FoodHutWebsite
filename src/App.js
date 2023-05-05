@@ -6,6 +6,7 @@ import "./assets/vendors/themify-icons/css/themify-icons.css"
 import { Route, Routes } from 'react-router-dom';
 import Layout from './layout/Layout';
 import Register from './components/Register';
+import CartPage from './components/CartPage';
 
 
 // import Login from './components/Login';
@@ -51,7 +52,7 @@ function App() {
           <Route path="about" element={<About />} />
           <Route path="gallery" element={<Gallery />} />
           <Route path="available" element={<AvailableFoods />} />
-          {/* <Route path="details" element={<FoodDetails />} /> */}
+          <Route path="cart" element={<CartPage />} />
           <Route path="details/:id" element={<FoodDetails />} />
           <Route path="blogs" element={<Blogs />} />
           <Route path="reviews" element={<Reviews />} />

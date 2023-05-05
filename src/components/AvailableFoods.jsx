@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react'
-import images from '../const/images'
 import { fetchFood } from '../store/FoodSlice'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link, useNavigate, useNavigation } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import "../assets/vendors/animate/animate.css"
 import "../assets/css/foodhut.css"
 import "../assets/vendors/themify-icons/css/themify-icons.css"
@@ -14,7 +13,7 @@ const AvailableFoods = () => {
   useEffect(() => {
     const email = localStorage.getItem('userEmail')
     const payload = {
-      email: "karan@gmail.com"
+      email: email
     }
     dispatch(fetchFood(payload))
   }, []);
@@ -23,7 +22,7 @@ const AvailableFoods = () => {
     <>
       <div className="text-center bg-dark text-light mt-0 mb-0">
         <h2 className="section-title pt-2">Available Foods</h2>
-        <div className="gallary row d-flex justify-content-center p-3 row has-img-bg ">
+        <div className="gallary row d-flex justify-content-center p-3 row header1 ">
           {
             isLoading ? <div className='has-img-bg1'><Loader isLoading={isLoading} /></div> : foods?.map((item) => {
               const id = item.id;

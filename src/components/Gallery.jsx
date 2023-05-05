@@ -7,13 +7,11 @@ import Loader from './Loader'
 const Gallery = () => {
 
   const { gallery, isLoading } = useSelector((state) => state.gallery)
-
   const dispatch = useDispatch()
-
   useEffect(() => {
     const email = localStorage.getItem('userEmail')
     const payload = {
-      "email": "karan@gmail.com"
+      email: email
     }
     dispatch(fetchGalleryItems(payload))
   }, []);
