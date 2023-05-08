@@ -1,59 +1,80 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import "../assets/vendors/animate/animate.css"
 import "../assets/css/foodhut.css"
 import "../assets/vendors/themify-icons/css/themify-icons.css"
 import Loader from './Loader'
 import { deleteFromCart, fetchCartData } from '../store/cartSlice'
-import { increment, decrement } from '../store/cartSlice'
+// import { increment, decrement } from '../store/cartSlice'
 import swal from 'sweetalert'
 const CartPage = () => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const dispatch = useDispatch()
   const email = localStorage.getItem('userEmail')
-
-
+  const { isLoading } = useSelector((state) => state.cart)
+  let [arr, setArr] = useState([]);
   useEffect(() => {
     const payload = {
       email: email,
     }
     dispatch(fetchCartData(payload))
+      .then((res) => {
+        setArr(res.payload.data)
+        console.log(res.payload.data);
+      })
+    // eslint-disable-next-line
   }, []);
 
-  const handleDecrement = (foodName) => {
-    const payload = {
-      email: email,
-      name: foodName
-    }
-    dispatch(decrement(payload))
-      .unwrap()
-      .then(response => {
-        if (response.success === false) {
-          swal({
-            title: "Failed",
-            text: response.message,
-            icon: "error",
-          });
-        }
-      })
-  }
-  const handleIncrement = (name) => {
-    const payload = {
-      email: email,
-      name: name
-    }
-    dispatch(increment(payload))
-      .unwrap()
-      .then(response => {
-        if (response.success === false) {
-          swal({
-            title: "Failed",
-            text: response.message,
-            icon: "error",
-          });
-        }
-      })
+  // const handleDecrement = (foodName) => {
+  //   // const payload = {
+  //   //   email: email,
+  //   //   name: foodName
+  //   // }
+  //   // dispatch(decrement(payload))
+  //   //   .unwrap()
+  //   //   .then(response => {
+  //   //     if (response.success === false) {
+  //   //       swal({
+  //   //         title: "Failed",
+  //   //         text: response.message,
+  //   //         icon: "error",
+  //   //       });
+  //   //     }
+  //   //   })
+  // }
+  // const handleIncrement = (name) => {
+  //   // const payload = {
+  //   //   email: email,
+  //   //   name: name
+  //   // }
+  //   // dispatch(increment(payload))
+  //   //   .unwrap()
+  //   //   .then(response => {
+  //   //     if (response.success === false) {
+  //   //       swal({
+  //   //         title: "Failed",
+  //   //         text: response.message,
+  //   //         icon: "error",
+  //   //       });
+  //   //     }
+  //   //   })
+  // }
+
+  function handleQuantityChange(itemName, newQuantity) {
+    const updatedCartItems = arr.map(item => {
+      if (newQuantity < 1) {
+        swal({
+          title: "Failed",
+          text: "Quanity should not be zero.",
+          icon: "error",
+        })
+      } else if (item.name === itemName) {
+        return { ...item, count: newQuantity };
+      }
+      return item;
+    });
+    setArr(updatedCartItems)
   }
   const handleDelete = (name) => {
     const payload = {
@@ -78,6 +99,11 @@ const CartPage = () => {
                   text: response.message,
                   icon: "success",
                 })
+                  .then((willRefresh) => {
+                    if (willRefresh) {
+                      window.location.reload(true)
+                    }
+                  })
               } else {
                 swal({
                   title: "Failed",
@@ -90,18 +116,15 @@ const CartPage = () => {
           console.log("cancelled")
         }
       });
-
   }
 
-  const { cartData, isLoading } = useSelector((state) => state.cart)
-  console.log({ cartData })
   return (
     <>
       <div className="text-center bg-dark text-light mt-0 mb-0">
-        {cartData.length > 0 ? <h2 className="section-title pt-2">Your Cart</h2> : <h2 className="section-title pt-2">Your Cart is empty</h2>}
+        {arr.length > 0 ? <h2 className="section-title pt-2">Your Cart</h2> : <h2 className="section-title pt-2">Your Cart is empty</h2>}
         <div className="gallary row d-flex justify-content-center p-3 row header1 ">
           {
-            isLoading ? <div className='has-img-bg1'><Loader isLoading={isLoading} /></div> : cartData?.map((item) => {
+            isLoading ? <div className='has-img-bg1'><Loader isLoading={isLoading} /></div> : arr?.map((item) => {
               return (
                 <div className="gallary gallary-item wow fadeIn border border-white border-5  mb-1 bg-body bg-dark m-5 col-sm-6 col-lg-3 ">
                   {/* <div className='gallary gallary-item wow fadeIn border border-white border-5 h-100 mb-1 bg-body bg-dark' > */}
@@ -112,7 +135,7 @@ const CartPage = () => {
                       {
                         item?.ingredients?.map((ingredient) => {
                           return (
-                            <small>{ingredient},</small>
+                            <small>{ingredient}, </small>
                           )
                         })
                       }</h6>
@@ -132,9 +155,9 @@ const CartPage = () => {
                   </div>
                   <h3>Quantity</h3>
                   <div className='d-flex align-items-center justify-content-center'>
-                    <h3 className="text-center mr-3"><Link className="badge badge-primary" onClick={() => handleDecrement(item?.name)}>-</Link></h3>
+                    <h3 className="text-center mr-3"><Link className="badge badge-primary" onClick={() => handleQuantityChange(item.name, item.count - 1)}>-</Link></h3>
                     <h3>{item?.count}</h3>
-                    <h3 className="text-center ml-3"><Link className="badge badge-primary" onClick={() => handleIncrement(item?.name)}>+</Link></h3>
+                    <h3 className="text-center ml-3"><Link className="badge badge-primary" onClick={() => handleQuantityChange(item.name, item.count + 1)}>+</Link></h3>
 
                   </div>
                   <h3 className="text-center mb-0 mt-3"> Total Price : <Link className="badge disabled" >₹{item?.price * item?.count}</Link></h3>

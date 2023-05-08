@@ -16,6 +16,7 @@ export const fetchCartData = createAsyncThunk(
   'cart/fetchFood',
   async (payload) => {
     let response = await apiPrivate.post('/cart/fetch-cart-data', payload);
+    console.log(response.data.data)
     return response.data;
   }
 );
