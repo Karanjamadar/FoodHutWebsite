@@ -48,7 +48,6 @@ export const fetchFood = createAsyncThunk(
     "foods/fetch",
     async (payload) => {
         const response = await apiPrivate.post("/food/get-food-items", payload)
-        console.log(response.data)
         return response.data;
     })
 export const fetchSingleFood = createAsyncThunk(

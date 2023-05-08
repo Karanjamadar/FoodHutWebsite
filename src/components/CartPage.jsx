@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link, useNavigate, useNavigation } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import "../assets/vendors/animate/animate.css"
 import "../assets/css/foodhut.css"
 import "../assets/vendors/themify-icons/css/themify-icons.css"
@@ -21,10 +21,10 @@ const CartPage = () => {
     dispatch(fetchCartData(payload))
   }, []);
 
-  const handleDecrement = (name) => {
+  const handleDecrement = (foodName) => {
     const payload = {
       email: email,
-      name: name
+      name: foodName
     }
     dispatch(decrement(payload))
       .unwrap()
@@ -60,23 +60,37 @@ const CartPage = () => {
       email: email,
       name: name
     }
-    dispatch(deleteFromCart(payload))
-      .unwrap()
-      .then(response => {
-        if (response.success === true) {
-          swal({
-            title: "Success",
-            text: response.message,
-            icon: "success",
-          });
+    swal({
+      title: "Are you sure?",
+      text: "You want to remove this item from your cart?",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    })
+      .then((willDelete) => {
+        if (willDelete) {
+          dispatch(deleteFromCart(payload))
+            .unwrap()
+            .then(response => {
+              if (response.success === true) {
+                swal({
+                  title: "Success",
+                  text: response.message,
+                  icon: "success",
+                })
+              } else {
+                swal({
+                  title: "Failed",
+                  text: response.message,
+                  icon: "error",
+                });
+              }
+            })
         } else {
-          swal({
-            title: "Failed",
-            text: response.message,
-            icon: "error",
-          });
+          console.log("cancelled")
         }
-      })
+      });
+
   }
 
   const { cartData, isLoading } = useSelector((state) => state.cart)
@@ -84,7 +98,7 @@ const CartPage = () => {
   return (
     <>
       <div className="text-center bg-dark text-light mt-0 mb-0">
-        <h2 className="section-title pt-2">Your Cart</h2>
+        {cartData.length > 0 ? <h2 className="section-title pt-2">Your Cart</h2> : <h2 className="section-title pt-2">Your Cart is empty</h2>}
         <div className="gallary row d-flex justify-content-center p-3 row header1 ">
           {
             isLoading ? <div className='has-img-bg1'><Loader isLoading={isLoading} /></div> : cartData?.map((item) => {

@@ -17,10 +17,9 @@ const FoodDetails = () => {
 
   useEffect(() => {
     const email = localStorage.getItem('userEmail')
-    console.log(email)
     const payload = {
       id: intId,
-      email: "karan@gmail.com",
+      email: email,
     }
     dispatch(fetchSingleFood(payload))
   }, [])

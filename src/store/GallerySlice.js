@@ -32,6 +32,5 @@ export const fetchGalleryItems = createAsyncThunk(
     "gallery/fetch",
     async (payload) => {
         const response = await apiPrivate.post("/gallery/get-gallery-items", payload);
-        console.log(response.data)
         return response.data;
     })

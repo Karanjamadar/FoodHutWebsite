@@ -68,7 +68,7 @@ const Navbar = () => {
         </Link>
         <ul className="navbar-nav">
           <li className="nav-item">
-            <Link class="cart_link" to="#">
+            <Link className="cart_link" to="#">
             </Link>
           </li>
           <li className="nav-item">
@@ -98,7 +98,7 @@ const Navbar = () => {
           }
         </ul>
       </div>
-    </nav >
+    </nav>
   )
 }
 

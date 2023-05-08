@@ -6,6 +6,7 @@ export const addToCart = createAsyncThunk(
   'cart/addToCart',
   async (payload) => {
     let response = await apiPrivate.post('/cart/add-to-cart', payload);
+    console.log(response.data)
     return response.data;
   }
 );
@@ -15,7 +16,6 @@ export const fetchCartData = createAsyncThunk(
   'cart/fetchFood',
   async (payload) => {
     let response = await apiPrivate.post('/cart/fetch-cart-data', payload);
-    console.log(response.data);
     return response.data;
   }
 );
@@ -24,7 +24,6 @@ export const increment = createAsyncThunk(
   'cart/increment',
   async (payload) => {
     let response = await apiPrivate.post('/cart/increment-by-one', payload);
-    console.log(response.data);
     return response.data;
   }
 );
@@ -33,7 +32,6 @@ export const decrement = createAsyncThunk(
   'cart/decrement',
   async (payload) => {
     let response = await apiPrivate.post('/cart/decrement-by-one', payload);
-    console.log(response.data);
     return response.data;
   }
 );
@@ -42,7 +40,6 @@ export const deleteFromCart = createAsyncThunk(
   'cart/delete',
   async (payload) => {
     let response = await apiPrivate.post('/cart/delete-item-from-cart', payload);
-    console.log(response.data);
     return response.data;
   }
 );
