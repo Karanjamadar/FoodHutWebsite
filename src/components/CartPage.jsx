@@ -108,14 +108,14 @@ const CartPage = () => {
                   <img src={item?.img} alt="failed to load" className="gallary-img" height={400} />
                   <div className="card-body ">
                     <h3 className="pt20 pb20">{item?.name}</h3>
-                    <h5 className="text-white ">Ingredients :<br />
+                    <h6 className="text-white ">Ingredients :<br />
                       {
                         item?.ingredients?.map((ingredient) => {
                           return (
                             <small>{ingredient},</small>
                           )
                         })
-                      }</h5>
+                      }</h6>
                     <p className="text-white">spicy :
                       {
                         item?.spicy === "true" ? <small> It is spicy</small> : <small> It is not spicy</small>
