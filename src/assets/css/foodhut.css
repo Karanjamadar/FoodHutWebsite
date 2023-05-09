@@ -11281,7 +11281,12 @@ pre {
 }
 .has-img-bg1 {
   height: 100vh;
-
+  background: url(../imgs/main.jpg) center center fixed;
+  background-size: cover;
+  background-repeat: repeat;
+}
+.has-img-on-payment-page {
+  height: 90vh;
   background: url(../imgs/main.jpg) center center fixed;
   background-size: cover;
   background-repeat: repeat;

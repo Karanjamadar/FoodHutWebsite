@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import "../assets/vendors/animate/animate.css"
 import "../assets/css/foodhut.css"
 import "../assets/vendors/themify-icons/css/themify-icons.css"
@@ -117,11 +117,27 @@ const CartPage = () => {
         }
       });
   }
+  const params = new URLSearchParams()
+
+  const navigate = useNavigate();
+
+  const handleNavigate = (name, count, price) => {
+    params.append('amount', price);
+    params.append('foodName', name);
+    params.append('qty', count);
+
+    navigate({
+      pathname: '/stripePayment',
+      search: params.toString(),
+    });
+
+
+  }
 
   return (
     <>
       <div className="text-center bg-dark text-light mt-0 mb-0">
-        {arr.length > 0 ? <h2 className="section-title pt-2">Your Cart</h2> : <h2 className="section-title pt-2">Your Cart is empty</h2>}
+        {arr.length > 0 ? <h2 className="section-title pt-2 font-weight-bold">Your Cart</h2> : <h2 className="section-title pt-2 font-weight-bold">Your Cart is empty</h2>}
         <div className="gallary row d-flex justify-content-center p-3 row header1 ">
           {
             isLoading ? <div className='has-img-bg1'><Loader isLoading={isLoading} /></div> : arr?.map((item) => {
@@ -162,7 +178,7 @@ const CartPage = () => {
                   </div>
                   <h3 className="text-center mb-0 mt-3"> Total Price : <Link className="badge disabled" >₹{item?.price * item?.count}</Link></h3>
                   {/* </div> */}
-                  <h1 className="text-center mt-4"><Link className="badge badge-primary disabled rounded-pill" >Buy Now</Link></h1>
+                  <h1 className="text-center mt-4"><button className="badge badge-primary disabled rounded-pill" onClick={() => handleNavigate(item?.name, item.count, item?.price * item?.count)} >Order Now</button></h1>
                   <h1 className="text-center"><Link className='badge' onClick={() => handleDelete(item?.name)}>Remove from cart</Link></h1>
 
                 </div>

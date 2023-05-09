@@ -18,7 +18,7 @@ const Gallery = () => {
   return (
     <>
       <div id="gallary" className="text-center bg-dark text-white mt-0 mb-0">
-        <h2 className="section-title pt-2">OUR MENU</h2>
+        <h2 className="section-title pt-2 font-weight-bold">OUR MENU</h2>
 
         <div className="gallary row d-flex justify-content-center header" >
           {

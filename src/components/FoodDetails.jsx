@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchSingleFood } from '../store/FoodSlice'
 import Loader from './Loader'
@@ -8,7 +8,11 @@ import swal from 'sweetalert'
 // import 'bootstrap/dist/css/bootstrap.min.css';
 
 const FoodDetails = () => {
+  const navigate = useNavigate();
   const { food, isLoading } = useSelector((state) => state.food)
+  const [count, setCount] = useState(1)
+
+
 
   const { id } = useParams()
   const dispatch = useDispatch()
@@ -44,10 +48,30 @@ const FoodDetails = () => {
             title: "Success",
             text: response.message,
             icon: "success",
-          });
+          })
         }
       })
   }
+
+  function handleQuantityChange(newQuantity) {
+    if (newQuantity < 1) {
+      swal({
+        title: "Failed",
+        text: "Quanity should not be zero.",
+        icon: "error",
+      })
+    } else {
+      setCount(newQuantity)
+    }
+  }
+
+  const params = new URLSearchParams()
+  params.append('amount', food?.price * count);
+  params.append('foodName', food?.name);
+  params.append('qty', count);
+
+
+
   return (
     <>
       <div className=" d-flex justify-content-center row pt-5 header1 rounded-9">
@@ -67,19 +91,28 @@ const FoodDetails = () => {
                   }</h3>
                   <h4 className="text-white">
                     {
-                      food?.spicy === 'true' ? <small> This {food?.name} is spicy</small> : <small> This {food?.name} is not spicy</small>
+                      food?.spicy === 'true' ? <h3> This {food?.name} is spicy</h3> : <h3> This {food?.name} is not spicy</h3>
                     }
                   </h4>
                   <p>
                     {
-                      food?.vegetarian === 'true' ? <small className="text-white"> It is Veg</small> : <small> It is Non-Veg</small>
+                      food?.vegetarian === 'true' ? <h3 className="text-white"> It is Veg</h3> : <h3> It is Non-Veg</h3>
                     }
                   </p>
-                  <h1 className="text-center "><Link className="" >₹{food?.price}</Link></h1>
+                  <h3 className="text-center ">Price : <Link className="badge" >₹{food?.price}</Link></h3>
                 </div>
-                <h1 className="text-center "><Link className="badge badge-primary rounded-pill" >Order Now</Link></h1>
-                <h3>or</h3>
-                <h3 className="text-center"><Link className="badge badge-primary rounded-right" onClick={addToCartFoods} >Add To Cart</Link></h3>
+                <h3>Quantity</h3>
+                <div className='d-flex align-items-center justify-content-center'>
+                  <h3 className="text-center mr-3"><Link className="badge badge-primary" onClick={() => handleQuantityChange(count - 1)}>-</Link></h3>
+                  <h3>{count}</h3>
+                  <h3 className="text-center ml-3"><Link className="badge badge-primary" onClick={() => handleQuantityChange(count + 1)}>+</Link></h3>
+
+                </div>
+                <h3 className="text-center mb-0 mt-3"> Total Price : <Link className="badge " >₹{food?.price * count}</Link></h3>
+                <h1 className="text-center "><Link className="badge badge-primary rounded-pill" to={`/stripePayment?${params.toString()}`}>Order Now</Link></h1>
+                {/* <h3>or</h3> */}
+                <h1 className="text-center"><Link className='badge' onClick={addToCartFoods}>Add to cart</Link></h1>
+
               </div>
             </div>
         }

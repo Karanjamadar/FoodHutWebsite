@@ -21,8 +21,8 @@ const AvailableFoods = () => {
   return (
     <>
       <div className="text-center bg-dark text-light mt-0 mb-0">
-        <h2 className="section-title pt-2">Available Foods</h2>
-        <div className="gallary row d-flex justify-content-center p-3 row header1 ">
+        <h2 className="section-title pt-2 font-weight-bold">Available Foods</h2>
+        <div className="gallary row d-flex justify-content-center p-3 header1 ">
           {
             isLoading ? <div className='has-img-bg1'><Loader isLoading={isLoading} /></div> : foods?.map((item) => {
               const id = item.id;

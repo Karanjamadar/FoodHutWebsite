@@ -7,6 +7,8 @@ import { Route, Routes } from 'react-router-dom';
 import Layout from './layout/Layout';
 import Register from './components/Register';
 import CartPage from './components/CartPage';
+import StripePaymentPage from './components/StripePaymentPage';
+import PaymentCheckoutPage from './components/PaymentCheckoutPage';
 
 
 // import Login from './components/Login';
@@ -60,6 +62,8 @@ function App() {
           <Route path="register" element={<RegistrationModal />} />
           <Route path="food" element={<Food />} />
           <Route path="juice" element={<Juice />} />
+          <Route path="stripePayment" element={<StripePaymentPage />} />
+          <Route path="checkout" element={<PaymentCheckoutPage />} />
         </Route>
 
 
