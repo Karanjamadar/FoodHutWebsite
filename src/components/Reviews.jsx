@@ -16,7 +16,7 @@ const Reviews = () => {
     const { review } = useSelector(state => state.review)
     return (
         <>
-            <section className="section-medium section-arrow--bottom-center section-arrow-primary-color bg-secondary" style={{ marginTop: 105 }}>
+            <section className="section-medium section-arrow--bottom-center section-arrow-primary-color bg-dark p-3">
                 <div className="container">
                     <div className="row">
                         <div className="col-md-12 text-white text-center">
@@ -28,10 +28,10 @@ const Reviews = () => {
                     </div>
                 </div>
             </section>
-            <section className="section-primary t-bordered mt-2">
-                <div className="container">
+            <section className="section-primary t-bordered header">
+                <div className="overlay">
                     <div className="row testimonial-three testimonial-three--col-three">
-                        <div className="col-md-4 testimonial-three-col">
+                        <div className="col-md-4 testimonial-three-col ml-5">
                             <div className="testimonial-inner">
                                 <div className="testimonial-image" itemProp="image">
                                     <img width="180" height="180" src="https://bootdey.com/img/Content/avatar/avatar1.png" alt='failed to load' />
@@ -47,7 +47,7 @@ const Reviews = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="col-md-4 testimonial-three-col">
+                        <div className="col-md-4 testimonial-three-col ml-5">
                             <div className="testimonial-inner">
                                 <div className="testimonial-image" itemProp="image">
                                     <img width="180" height="180" src="https://bootdey.com/img/Content/avatar/avatar2.png" alt='failed to load' />
@@ -63,7 +63,7 @@ const Reviews = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="col-md-4 testimonial-three-col">
+                        <div className="col-md-4 testimonial-three-col ml-5">
                             <div className="testimonial-inner">
                                 <div className="testimonial-image" itemProp="image">
                                     <img width="180" height="180" src="https://bootdey.com/img/Content/avatar/avatar3.png" alt='failed to load' />
@@ -79,7 +79,7 @@ const Reviews = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="col-md-4 testimonial-three-col">
+                        <div className="col-md-4 testimonial-three-col ml-5">
                             <div className="testimonial-inner">
                                 <div className="testimonial-image" itemProp="image">
                                     <img width="180" height="180" src="https://bootdey.com/img/Content/avatar/avatar4.png" alt='failed to load' />
@@ -95,7 +95,7 @@ const Reviews = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="col-md-4 testimonial-three-col">
+                        <div className="col-md-4 testimonial-three-col ml-5">
                             <div className="testimonial-inner">
                                 <div className="testimonial-image" itemProp="image">
                                     <img width="180" height="180" src="https://bootdey.com/img/Content/avatar/avatar5.png" alt='failed to load' />
@@ -111,7 +111,7 @@ const Reviews = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="col-md-4 testimonial-three-col">
+                        <div className="col-md-4 testimonial-three-col ml-5">
                             <div className="testimonial-inner">
                                 <div className="testimonial-image" itemProp="image">
                                     <img width="180" height="180" src="https://bootdey.com/img/Content/avatar/avatar6.png" alt='failed to load' />

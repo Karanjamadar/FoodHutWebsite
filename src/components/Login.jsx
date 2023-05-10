@@ -30,6 +30,7 @@ const Login = () => {
   const [formValues, setFormValues] = useState(initialFormValues)
   const [formErrors, setFormErrors] = useState(initialFormErrors)
   const [showRegisterModal, setShowRegisterModal] = useState(false)
+  const [type, setType] = useState('password');
 
   const handleRegisterModal = () => {
     console.log("Hello World")
@@ -100,6 +101,14 @@ const Login = () => {
     }
   }
 
+  const handlePasswordVisible = () => {
+    if (type === 'password') {
+      setType('text')
+    } else {
+      setType('password')
+    }
+  }
+
 
   return (
     <div className="d-lg-flex half" >
@@ -113,14 +122,18 @@ const Login = () => {
               <div>
                 <div className="form-group first">
                   <label htmlFor="exampleInputEmail1" className='text-dark'>Email :</label>
-                  <input type="tel" className="form-control bg-light text-dark" id="exampleInputEmail3" aria-describedby="emailHelp" placeholder="Enter your email address" onChange={handleEmail} value={formValues.email} />
+                  <input type="email" className="form-control bg-light text-dark" id="exampleInputEmail3" aria-describedby="emailHelp" placeholder="Enter your email address" onChange={handleEmail} value={formValues.email} />
+
                   {formErrors.email &&
                     <small style={{ color: 'red' }}>{formErrors.email}</small>
                   }
                 </div>
                 <div className="form-group last mb-3">
                   <label htmlFor="exampleInputPassword1" className='text-dark'>Password :</label>
-                  <input type="password" className="form-control bg-light text-dark" id="exampleInputPassword1" placeholder=" Enter your Password" onChange={handlePassword} value={formValues.password} />
+                  <div className=" form-control d-flex align-items-center">
+                    <input type={type} className="form-control bg-light text-dark mr-2" style={{ marginLeft: '-10px' }} placeholder=" Enter your Password" onChange={handlePassword} value={formValues.password} />
+                    <Link style={{ marignLeft: '5px', textDecoration: 'none' }} onClick={handlePasswordVisible} >👁️</Link>
+                  </div>
                   {formErrors.password &&
                     <small style={{ color: 'red' }}>{formErrors.password}</small>
                   }
@@ -136,7 +149,7 @@ const Login = () => {
           </div>
         </div>
       </div>
-    </div>
+    </div >
   )
 }
 

@@ -20,9 +20,9 @@ const Gallery = () => {
       <div id="gallary" className="text-center bg-dark text-white mt-0 mb-0">
         <h2 className="section-title pt-2 font-weight-bold">OUR MENU</h2>
 
-        <div className="gallary row d-flex justify-content-center header" >
+        <div className="gallary row d-flex justify-content-center header1" >
           {
-            isLoading ? <div className='has-img-bg1'><Loader isLoading={isLoading} /></div> :
+            isLoading ? <div><Loader isLoading={isLoading} /></div> :
               gallery?.map((item, index) => {
                 const base64String = btoa(String.fromCharCode(...new Uint8Array(item?.img?.data?.data)))
                 return (

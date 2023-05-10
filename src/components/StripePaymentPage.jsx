@@ -43,23 +43,23 @@ const StripePaymentPage = () => {
         <li className="list-group-item d-flex justify-content-between lh-condensed">
           <div>
             <h6 className="my-0 text-dark">Food Name : {name}</h6>
-            <small className="text-dark">Brief description</small>
+            <small className="text-dark">Single Food Price</small>
+          </div>
+          <span className="text-dark">₹{price / totalQuantity}</span>
+        </li>
+        <li className="list-group-item d-flex justify-content-between lh-condensed">
+          <div>
+            <h6 className="my-0 text-dark">{name}</h6>
+            <small className="text-dark">total quantity {totalQuantity} with price</small>
           </div>
           <span className="text-dark">₹{price}</span>
         </li>
-        {/* <li className="list-group-item d-flex justify-content-between lh-condensed">
-          <div>
-            <h6 className="my-0 text-dark">Second product</h6>
-            <small className="text-dark">Brief description</small>
-          </div>
-          <span className="text-dark">₹800</span>
-        </li> */}
         <li className="list-group-item d-flex justify-content-between lh-condensed">
           <div>
             <h6 className="my-0 text-dark">Discount</h6>
             <small className="text-dark">5% off to each food</small>
           </div>
-          <span className="text-dark">{price * 5 / 100}</span>
+          <span className="text-dark">₹{price * 5 / 100}</span>
         </li>
         <li className="list-group-item d-flex justify-content-between bg-light">
           <div className="text-success">
@@ -69,7 +69,10 @@ const StripePaymentPage = () => {
           <span className="text-success">-₹0</span>
         </li>
         <li className="list-group-item d-flex justify-content-between">
-          <span className='text-dark'>Total (INR)</span>
+          <div className="text-success">
+            <h6 className='text-dark'>Total (INR)</h6>
+            <small className='text-dark'>You saved <strong>₹{price * 5 / 100}</strong> with foodHut</small>
+          </div>
           <strong className='text-dark'>₹{price - price * 5 / 100}</strong>
         </li>
       </ul>

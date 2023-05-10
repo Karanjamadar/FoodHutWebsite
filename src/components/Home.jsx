@@ -18,33 +18,12 @@ const Home = () => {
         <div className="overlay text-white text-center">
           <h1 className="display-2 font-weight-bold ">FoodHut</h1>
           <h2 className="display-4 mb-5">Always fresh &amp; Delightful</h2>
-          <Link className="btn btn-lg btn-primary" to="/gallery">View Our gallary</Link>
+          <Link className="btn btn-lg btn-primary rounded-pill" to="/gallery">View Our gallary</Link>
         </div>
       </header>
 
-      <div className="container-fluid has-bg-overlay text-center text-light has-height-lg middle-items" id="book-table">
-        <div className="">
-          <h2 className="section-title mb-5">BOOK A TABLE</h2>
-          <div className="row mb-5">
-            <div className="col-sm-6 col-md-3 col-xs-12 my-2">
-              <input type="email" id="booktable" className="form-control form-control-lg custom-form-control" placeholder="EMAIL" />
-            </div>
-            <div className="col-sm-6 col-md-3 col-xs-12 my-2">
-              <input type="number" id="booktable" className="form-control form-control-lg custom-form-control" placeholder="NUMBER OF GUESTS" max="20" min="0" />
-            </div>
-            <div className="col-sm-6 col-md-3 col-xs-12 my-2">
-              <input type="time" id="booktable" className="form-control form-control-lg custom-form-control" placeholder="EMAIL" />
-            </div>
-            <div className="col-sm-6 col-md-3 col-xs-12 my-2">
-              <input type="date" id="booktable" className="form-control form-control-lg custom-form-control" placeholder="12/12/12" />
-            </div>
-          </div>
-          <a href="#" className="btn btn-lg btn-primary" id="rounded-btn">FIND TABLE</a>
-        </div>
-      </div>
-
       <div id="blog" className="container-fluid bg-dark text-light py-5 text-center wow fadeIn">
-        <h2 className="section-title py-5">EVENTS AT THE FOOD HUT</h2>
+        <h2 className="section-title py-5">FAMOUS AT THE FOOD HUT</h2>
         <div className="row justify-content-center">
           <div className="col-sm-7 col-md-4 mb-5">
             <ul className="nav nav-pills nav-justified mb-3" id="pills-tab" role="tablist">
@@ -64,7 +43,7 @@ const Home = () => {
         </div>
       </div>
 
-      <div id="testmonial" className="container-fluid wow fadeIn bg-secondary text-light has-height-lg middle-items">
+      <div id="testmonial" className="container-fluid wow fadeIn  text-light has-height-lg middle-items has-bg-overlay">
         <h2 className="section-title my-5 text-center">REVIEWS</h2>
         <div className="row mt-3 mb-5">
           <div className="col-md-4 my-3 my-md-0">
@@ -97,41 +76,43 @@ const Home = () => {
         </div>
       </div>
 
-      <div id="contact" className="container-fluid bg-dark text-light border-top wow fadeIn">
-        <div className="row">
+      <div id="contact" className="container-fluid bg-dark text-light border-top wow fadeIn header1 ">
+        <div className="row" >
           <div className="col-md-6 px-0">
             <GoogleMap />
           </div>
-          <div className="col-md-6 px-5 has-height-lg middle-items">
-            <h3>FIND US</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sit, laboriosam doloremque odio delectus, sunt magnam laborum impedit molestiae, magni quae ipsum, ullam eos! Alias suscipit impedit et, adipisci illo quam.</p>
-            <div className="text-muted">
-              <p><span className="ti-location-pin pr-3"></span> 12345 Fake ST NoWhere, AB Country</p>
-              <p><span className="ti-support pr-3"></span> (123) 456-7890</p>
-              <p><span className="ti-email pr-3"></span>www.FoodHut.com</p>
+          <div className="col-md-6 px-5 has-height-lg middle-items header">
+            <div className='overlay h-50 mr-5 p-3'>
+              <h3>FIND US</h3>
+              <p>The best food websites introduce not only your restaurant’s location and menu, but the face behind the food, too .</p>
+              <div className="text-muted">
+                <p><span className="ti-location-pin pr-3"></span>Hadapsar, Pune 411028</p>
+                <p><span className="ti-support pr-3"></span>+91 987-654-3210</p>
+                <p><span className="ti-email pr-3"></span>team.foodhut@gmail.com</p>
+              </div>
             </div>
           </div>
         </div>
       </div>
 
-      <div className="container-fluid bg-primary text-light has-height-md middle-items border-top text-center wow fadeIn">
+      <div className="container-fluid bg-dark text-light has-height-md middle-items border-top text-center wow fadeIn">
         <div className="row">
           <div className="col-sm-4">
             <h3>EMAIL US</h3>
-            <p className="text-muted">info@website.com</p>
+            <p className="text-white font-weight-bold">team.foodhut@gmail.com</p>
           </div>
           <div className="col-sm-4">
             <h3>CALL US</h3>
-            <p className="text-muted">(123) 456-7890</p>
+            <p className="text-white font-weight-bold">+91 987-654-3210</p>
           </div>
           <div className="col-sm-4">
-            <h3>FIND US</h3>
-            <p className="text-muted">12345 Fake ST NoWhere AB Country</p>
+            <h3>FIND US ON</h3>
+            <p className="text-white font-weight-bold">www.foodhut.com</p>
           </div>
         </div>
       </div>
-      <div className="bg-dark text-light text-center border-top wow fadeIn">
-        <p className="mb-0 py-3 text-muted small">&copy; Copyright {new Date().getFullYear()}</p>
+      <div className="bg-primary text-light text-center border-top wow fadeIn">
+        <p className="mb-0 py-3 text-dark small">&copy; Copyright {new Date().getFullYear()}</p>
       </div>
     </div >
   )
